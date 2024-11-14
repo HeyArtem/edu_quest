@@ -1,6 +1,6 @@
 .container {
     width: 1184px;
-    height: 922px;
+    height: 100%;
     background-color: #ADB9E3;
     border-radius: 50px 50px 0 0;
     font-family: 'Inter';
@@ -8,6 +8,8 @@
     color: white;
     margin-top: 33px;
     padding-top: 1px;
+
+    box-sizing: border-box;
 }
 
 .title {
@@ -85,7 +87,7 @@ button {
 .footer {
     background-color: #A379C9;
     width: 570px;
-    height: 130px;
+    height: 100%;
     margin: auto;
     border-radius: 50px 50px 0 0;
     margin-top: 56px;
