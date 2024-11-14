@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block style %}
+    <link rel="stylesheet" href="{% static 'css/login.css' %}">
+{% endblock %}
+
+{% block content %}
+<!--    <main class="container">-->
+    <div class="container">
+        <div class="title">
+            <h1>Авторизация</h1>
+        </div>
+        <div class="child-container">
+            <div class="form">
+                <div class="login">
+                    <h1>Логин</h1>
+                </div>
+                <div class="field-login">
+                    <!--поле для ввода login-->
+                </div>
+                <div class="password">
+                    <h1>Пароль</h1>
+                </div>
+                <div class="field-password">
+                    <!--поле для ввода password-->
+                </div>
+                <div class="field-entry">
+                    <button>Войти</button>
+                </div>
+
+            </div>
+        </div>
+
+        <div class="footer">
+            <div class="non-account">
+                <h1>Нет аккаунта --></h1>
+            </div>
+            <div class="plus">
+                <img  src="{% static 'img/plus.png' %}" alt="...">
+            </div>
+        </div>
+<!--    </main>-->
+    </div>
+
+{% endblock %}

@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block style %}
+    <link rel="stylesheet" href="{% static 'css/register.css' %}">
+{% endblock %}
+
+{% block content %}
+    <div class="container">
+        <div class="title">
+            <h1>Регистрация</h1>
+        </div>
+
+        <div class="child-container">
+            <div class="form">
+                <div class="login">
+                    <h1>Логин</h1>
+                </div>
+                <div class="field-login">
+                    <!--поле для ввода login-->
+                </div>
+                <div class="password">
+                    <h1>Пароль</h1>
+                </div>
+                <div class="field-password">
+                    <!--поле для ввода password-->
+                </div>
+                <div class="field-create">
+                    <button>Создать</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer">
+            <div class="go-back">
+                <button>Вернуться обратно</button>
+            </div>
+
+        </div>
+    </div>
+{% endblock %}

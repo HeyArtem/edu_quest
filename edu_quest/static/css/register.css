@@ -1,0 +1,111 @@
+.container {
+    width: 1184px;
+    height: 922px;
+    background-color: #ADB9E3;
+    border-radius: 50px 50px 0 0;
+    font-family: 'Inter';
+    text-align: center;
+    color: white;
+    margin-top: 33px;
+    padding-top: 1px;
+}
+
+.title {
+    margin-top: 71px;
+    font-size: 40px;
+    font-weight: bold;
+}
+
+.child-container {
+    background-color: #A379C9;
+    width: 570px;
+    height: 582px;
+    border-radius: 50px 50px 50px 50px;
+    margin: auto;
+    padding-top: 1px;
+    margin-top: 35px;
+}
+
+.form {
+    font-size: 30px;
+    font-weight: bold;
+}
+
+.login {
+    margin-top: 83px;
+    margin-left: 76px;
+    text-align: left;
+}
+
+.field-login {
+    width: 472px;
+    height: 67px;
+    background-color: #FFFFFF;
+    border-radius: 30px 30px;
+    margin: auto;
+}
+
+.password {
+    margin-top: 61px;
+    margin-left: 76px;
+    text-align: left;
+
+}
+
+.field-password {
+    width: 472px;
+    height: 67px;
+    background-color: #FFFFFF;
+    border-radius: 30px 30px;
+    margin: auto;
+}
+
+.field-create {
+    width: 472px;
+    height: 67px;
+    background-color: #56C7B2;
+    border-radius: 30px 30px;
+    margin-top: 61px;
+    margin-left: auto;
+    margin-right: auto;
+    display: flex; /* Добавляем flexbox для центрирования содержимого */
+    justify-content: center; /* Центрируем по горизонтали */
+    align-items: center; /* Центрируем по вертикали */
+}
+
+button {
+    background-color: transparent; /* Убираем фон */
+    border: none; /* Убираем границу */
+    color: white; /* Устанавливаем белый цвет текста */
+    font-size: 30px; /* Настройте размер шрифта по желанию */
+    font-weight: bold;
+    cursor: pointer; /* Указатель при наведении на кнопку */
+}
+
+.footer {
+    background-color: #A379C9;
+    width: 570px;
+    height: 130px;
+    margin: auto;
+    border-radius: 50px 50px 0 0;
+    margin-top: 56px;
+    display: flex; /* Добавляем flexbox для центрирования содержимого */
+    justify-content: center; /* Центрируем по горизонтали */
+    align-items: center; /* Центрируем по вертикали */
+    gap: 10px; /* Добавляем промежуток между элементами */
+}
+
+
+
+.go-back {
+    width: 472px;
+    height: 67px;
+    background-color: #56C7B2;
+    border-radius: 30px 30px;
+    margin-top: 32px;
+    margin-left: auto;
+    margin-right: auto;
+    display: flex; /* Добавляем flexbox для центрирования содержимого */
+    justify-content: center; /* Центрируем по горизонтали */
+    align-items: center; /* Центрируем по вертикали */
+}

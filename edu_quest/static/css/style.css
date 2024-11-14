@@ -1,0 +1,132 @@
+/*Обнуление*/
+* {
+    padding: 0;
+    margin: 0;
+    border: 0;
+}
+
+*, *:before, *:after {
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+:focus, :active {
+    outline: none;
+}
+
+a:focus, a:active {
+    outline: none;
+}
+
+nav, footer, header, aside {
+    display: block;
+}
+
+p {
+    margin: 0;
+}
+
+@font-face {
+    font-family: "VinnytsiaReg";
+    font-style: normal;
+    font-weight: 400;
+    src: local("../fonts/VinnytsiaSansReg.ttf"), url("../fonts/VinnytsiaSansReg.ttf") format("truetype");
+}
+
+html, body {
+    height: 100%;
+    width: 100%;
+    font-size: 100%;
+    line-height: 1;
+    font-size: 14px;
+    -ms-text-size-adjust: 100%;
+    -moz-text-size-adjust: 100%;
+    -webkit-text-size-adjust: 100%;
+    font-family: 'VinnytsiaReg', serif;
+    background-image: url('../img/background.jpg');
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    -moz-background-size: 100%; /* Firefox 3.6+ */
+    -webkit-background-size: 100%; /* Safari 3.1+ и Chrome 4.0+ */
+    -o-background-size: 100%; /* Opera 9.6+ */
+    background-size: 100%; /* Современные браузеры */
+}
+
+input, button, textarea {
+    font-family: inherit;
+}
+
+input::-ms-clear {
+    display: none;
+}
+
+button {
+    cursor: pointer;
+}
+
+button::-moz-focus-inner {
+    padding: 0;
+    border: 0;
+}
+
+a, a:visited {
+    text-decoration: none;
+    color: white;
+}
+
+a:hover {
+    text-decoration: none;
+}
+
+
+ul li {
+    list-style: none;
+}
+
+img {
+    vertical-align: top;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-size: inherit;
+    font-weight: inherit;
+}
+
+/*--------------------*/
+
+
+body {
+    background-color: #D8F8FF;
+    padding-top: 20px;
+}
+
+header {
+    width: 1184px;
+    height: 108px;
+    background-color: #ADB9E3;
+    color: white;
+    border-radius: 50px;
+    font-family: 'Inter';
+    font-weight: bold;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    padding: 0 40px;
+    margin: 0 auto;
+}
+
+.header-title {
+    font-size: 30px;
+}
+
+.header-item-text {
+    font-size: 24px;
+}
+
+.header-item-profile {
+    width: 40px;
+    height: 40px;
+}
