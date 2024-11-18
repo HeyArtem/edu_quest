@@ -56,6 +56,8 @@
     margin-top: 61px;
     margin-left: 76px;
     text-align: left;
+
+
 }
 
 .field-password {
@@ -89,10 +91,12 @@ button {
 }
 
 .footer {
+
     margin: 56px auto 0 auto;
     background-color: #A379C9;
     width: 570px;
     height: 100%;
+
     border-radius: 50px 50px 0 0;
     display: flex; /* Добавляем flexbox для центрирования содержимого */
     gap: 10px; /* Добавляем промежуток между элементами */
@@ -151,4 +155,5 @@ button {
 
 .errorlist {
     color: red;
+
 }
