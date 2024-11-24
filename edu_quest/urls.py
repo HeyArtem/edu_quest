@@ -7,4 +7,5 @@ urlpatterns = [
     path("", HomePageView.as_view(), name="index"),
     path("register/", RegisterUserView.as_view(), name="register"),
     path("login/", UserLoginView.as_view(), name="login"),
+    path("home/", HomePageView.as_view(), name="login"),
 ]

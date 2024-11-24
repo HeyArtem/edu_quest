@@ -1,5 +1,140 @@
 {% extends 'base.html' %}
+{% load static %}
+
+{% block style %}
+    <link rel="stylesheet" href="{% static 'css/home.css' %}">
+{% endblock %}
 
 {% block content %}
-    <h1>Сюда основной контент страницы !!!</h1>
+    <div class="container">
+        <!--Категории-->
+        <div class="container-title">
+            <h1>Категории:</h1>
+        </div>
+
+        <!--Категории тестов-->
+        <div class="container-header">
+            <div class="header-selected1">
+                <h1>Программирование</h1>
+            </div>
+            <div class="header-selected2">
+                <h1>Социология</h1>
+            </div>
+            <div class="header-selected3">
+                <h1>Автомобили</h1>
+            </div>
+            <div class="header-selected4">
+                <h1>Стиль</h1>
+            </div>
+            <div class="header-selected5">
+                <h1>Крипто</h1>
+            </div>
+            <div class="header-selected6">
+                <h1> + </h1>
+            </div>
+        </div>
+
+        <!--Популярные тесты-->
+        <div class="container-popular-tests">
+            <h1>Популярные тесты</h1>
+        </div>
+
+        <!--Карточки с популярными тестами-->
+        <div class="container-child">
+
+            <!--Карточка теста-->
+            <div class="card-test1">
+                <div class="title-test">
+                    <h1>Типы данных</h1>
+                </div>
+                <div class="category-test">
+                    <h1>Программирование</h1>
+                </div>
+                <div class="date-create-test">
+                    <h1>Дата публикации: 10-11-24</h1>
+                </div>
+                <div class="author-test">
+                    <h1>Автор: Альберт Энштейн</h1>
+                </div>
+            </div>
+
+            <div class="card-test2">
+                <div class="title-test">
+                    <h1>Типы данных</h1>
+                </div>
+                <div class="category-test">
+                    <h1>Физика</h1>
+                </div>
+                <div class="date-create-test">
+                    <h1>Дата публикации: 10-11-24</h1>
+                </div>
+                <div class="author-test">
+                    <h1>Автор: Андре́-Мари́ Ампе́р</h1>
+                </div>
+            </div>
+
+            <div class="card-test3">
+                <div class="title-test">
+                    <h1>Классы</h1>
+                </div>
+                <div class="category-test">
+                    <h1>Программирование</h1>
+                </div>
+                <div class="date-create-test">
+                    <h1>Дата публикации: 10-10-24</h1>
+                </div>
+                <div class="author-test">
+                    <h1>Автор: Альберт Энштейн</h1>
+                </div>
+            </div>
+
+            <div class="card-test4">
+                <div class="title-test">
+                    <h1>Типы данных</h1>
+                </div>
+                <div class="category-test">
+                    <h1>Программирование</h1>
+                </div>
+                <div class="date-create-test">
+                    <h1>Дата публикации: 10-11-24</h1>
+                </div>
+                <div class="author-test">
+                    <h1>Автор: Альберт Энштейн</h1>
+                </div>
+            </div>
+
+            <div class="card-test5">
+                <div class="title-test">
+                    <h1>Жители океанов</h1>
+                </div>
+                <div class="category-test">
+                    <h1>Океанография</h1>
+                </div>
+                <div class="date-create-test">
+                    <h1>Дата публикации: 10-11-24</h1>
+                </div>
+                <div class="author-test">
+                    <h1>Автор: Жак-Ив Кусто́</h1>
+                </div>
+            </div>
+
+            <div class="card-test6">
+                <div class="title-test">
+                    <h1>калифорний-252</h1>
+                </div>
+                <div class="category-test">
+                    <h1>Химия</h1>
+                </div>
+                <div class="date-create-test">
+                    <h1>Дата публикации: 10-11-24</h1>
+                </div>
+                <div class="author-test">
+                    <h1>Автор: Дми́трий Ива́нович Менделе́ев</h1>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
 {% endblock %}
