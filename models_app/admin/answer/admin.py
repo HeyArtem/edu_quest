@@ -9,45 +9,40 @@ class AnswerAdmin(admin.ModelAdmin):
     save_on_top = True
 
     # Подписи в шапке
-    list_display = (
+    list_display = [
         "id",
         "text",
         "is_correct",
         "question",
-    )
+    ]
 
     # Кликабельность в шапке
-    list_display_links = (
+    list_display_links = [
         "id",
         "text",
         "is_correct",
         "question",
-    )
+    ]
 
     # По каким полям можно осущ-ять поиск (только CharField или TextField)
-    search_fields = ("text",)
+    search_fields = [
+        "text",
+    ]
 
     # Справа Фильтр
-    list_filter = (
+    list_filter = [
+        "question",
         "text",
         "is_correct",
-        "question",
-        "id",
-    )
+    ]
 
     # Сортирока порядок
-    ordering = (
+    ordering = [
         "question",
         "is_correct",
         "text",
         "id",
-    )
+    ]
 
     # Пагинация
-    list_per_page = 10
-
-
-# Эксперименты
-class AnswerInline(admin.TabularInline):
-    model = Answer
-    extra = 0
+    list_per_page = 20

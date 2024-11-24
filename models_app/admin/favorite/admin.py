@@ -10,31 +10,32 @@ class FavoriteAdmin(admin.ModelAdmin):
 
     # Подписи в шапке
     # list_display = ('id', 'User', 'test',)
-    list_display = (
+    list_display = [
         "id",
         "test",
-    )
+    ]
 
     # Кликабельность в шапке
-    list_display_links = (
+    list_display_links = [
         "id",
         "test",
-    )
+    ]
 
     # По каким полям можно осущ-ять поиск (только CharField или TextField)
-    search_fields = ("test",)
+    search_fields = [
+        "test",
+    ]
 
     # Справа Фильтр
-    list_filter = (
-        "id",
+    list_filter = [
         "test",
-    )
+    ]
 
     # Сортирока порядок
-    ordering = (
+    ordering = [
         "test",
         "id",
-    )
+    ]
 
     # Пагинация
     list_per_page = 10
