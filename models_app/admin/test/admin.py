@@ -79,6 +79,7 @@ class TestAdmin(admin.ModelAdmin):
                     "category",
                     "id",
                     "author",
+                    "slug"
                 ]
             },
         ),

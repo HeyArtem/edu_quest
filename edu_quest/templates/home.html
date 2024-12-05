@@ -14,127 +14,53 @@
 
         <!--Категории тестов-->
         <div class="container-header">
-            <div class="header-selected1">
-                <h1>Программирование</h1>
-            </div>
-            <div class="header-selected2">
-                <h1>Социология</h1>
-            </div>
-            <div class="header-selected3">
-                <h1>Автомобили</h1>
-            </div>
-            <div class="header-selected4">
-                <h1>Стиль</h1>
-            </div>
-            <div class="header-selected5">
-                <h1>Крипто</h1>
-            </div>
-            <div class="header-selected6">
-                <h1> + </h1>
+            <!-- Вывожу первые 7 элементов из списка categories -->
+            {% for category in categories|slice:":7" %}
+                <div class="header-selected">
+                    <span><a href="#">{{ category.title }}</a></span>
+                </div>
+            {% empty %}
+                <p>Категории пока не созданы.</p>
+            {% endfor %}
+            <!-- Добавляем блок "+" после всех категорий -->
+            <div class="header-selected add-category">
+                <span><a href="#">+</a></span>
             </div>
         </div>
 
-        <!--Популярные тесты-->
+        <!--Карточки популярные тесты заголовок-->
         <div class="container-popular-tests">
             <h1>Популярные тесты</h1>
         </div>
 
-        <!--Карточки с популярными тестами-->
+        <!--Блок с карточками тестов-->
         <div class="container-child">
-
-            <!--Карточка теста-->
-            <div class="card-test1">
-                <div class="title-test">
-                    <h1>Типы данных</h1>
+            {% for test_card in test_cards %}
+                <!--Карточка теста-->
+                <div class="card-test">
+                    <div class="title-test">
+                        <h1>{{ test_card.title }}</h1>
+                    </div>
+                    <div class="category-test">
+                        <h1>{{ test_card.category }}</h1>
+                    </div>
+                    <div class="date-create-test">
+                        <h1>Дата публикации: {{ test_card.formatted_date }}</h1>
+                    </div>
+                    <div class="author-test">
+                        <h1>Автор: {{ test_card.author }}</h1>
+                    </div>
                 </div>
-                <div class="category-test">
-                    <h1>Программирование</h1>
-                </div>
-                <div class="date-create-test">
-                    <h1>Дата публикации: 10-11-24</h1>
-                </div>
-                <div class="author-test">
-                    <h1>Автор: Альберт Энштейн</h1>
-                </div>
-            </div>
-
-            <div class="card-test2">
-                <div class="title-test">
-                    <h1>Типы данных</h1>
-                </div>
-                <div class="category-test">
-                    <h1>Физика</h1>
-                </div>
-                <div class="date-create-test">
-                    <h1>Дата публикации: 10-11-24</h1>
-                </div>
-                <div class="author-test">
-                    <h1>Автор: Андре́-Мари́ Ампе́р</h1>
-                </div>
-            </div>
-
-            <div class="card-test3">
-                <div class="title-test">
-                    <h1>Классы</h1>
-                </div>
-                <div class="category-test">
-                    <h1>Программирование</h1>
-                </div>
-                <div class="date-create-test">
-                    <h1>Дата публикации: 10-10-24</h1>
-                </div>
-                <div class="author-test">
-                    <h1>Автор: Альберт Энштейн</h1>
-                </div>
-            </div>
-
-            <div class="card-test4">
-                <div class="title-test">
-                    <h1>Типы данных</h1>
-                </div>
-                <div class="category-test">
-                    <h1>Программирование</h1>
-                </div>
-                <div class="date-create-test">
-                    <h1>Дата публикации: 10-11-24</h1>
-                </div>
-                <div class="author-test">
-                    <h1>Автор: Альберт Энштейн</h1>
-                </div>
-            </div>
-
-            <div class="card-test5">
-                <div class="title-test">
-                    <h1>Жители океанов</h1>
-                </div>
-                <div class="category-test">
-                    <h1>Океанография</h1>
-                </div>
-                <div class="date-create-test">
-                    <h1>Дата публикации: 10-11-24</h1>
-                </div>
-                <div class="author-test">
-                    <h1>Автор: Жак-Ив Кусто́</h1>
-                </div>
-            </div>
-
-            <div class="card-test6">
-                <div class="title-test">
-                    <h1>калифорний-252</h1>
-                </div>
-                <div class="category-test">
-                    <h1>Химия</h1>
-                </div>
-                <div class="date-create-test">
-                    <h1>Дата публикации: 10-11-24</h1>
-                </div>
-                <div class="author-test">
-                    <h1>Автор: Дми́трий Ива́нович Менделе́ев</h1>
-                </div>
-            </div>
-
+                <!--проверяет, делится ли текущий номер карточки на 3-->
+                <!--divisibleby:3 — это фильтр, который проверяет, делится ли число на 3 без остатка.-->
+                <!--Если условие выполняется (при 3-й, 6-й, 9-й карточке),
+                тогда будет закрыт текущий <div class="container-child">
+                 откроется новый.-->
+                {% if forloop.counter|divisibleby:3 %}
+                    </div><div class="container-child"> <!-- Новый ряд -->
+                {% endif %}
+            {% endfor %}
         </div>
-
     </div>
 
 {% endblock %}

@@ -1,0 +1,70 @@
+.container {
+    width: 1184px;
+    height: 100%;
+    min-height: 100vh;
+    background-color: #ADB9E3;
+    border-radius: 50px 50px 0 0;
+    margin-top: 33px;
+    padding-top: 1px;
+    box-sizing: border-box;
+    font-family: 'Inter';
+    text-align: center;
+    color: white;
+}
+
+.container-title {
+    font-size: 30px;
+    font-weight: bold;
+    margin-top: 45px;
+    margin-left: 54px;
+    text-align: left;
+}
+
+.container-header {
+}
+
+
+.header-selected1 {
+}
+
+.header-selected2 {
+}
+
+.header-selected3 {
+}
+
+.header-selected4 {
+}
+
+.header-selected5 {
+}
+
+.header-selected6 {
+}
+
+
+.container-popular-tests {
+    font-size: 30px;
+    font-weight: bold;
+    margin-top: 45px;
+    margin-left: 54px;
+    text-align: left;
+}
+
+
+.container-child {
+}
+
+
+.card-test1 {
+}
+.card-test2 {
+}
+.card-test3 {
+}
+.card-test4 {
+}
+.card-test5 {
+}
+.card-test6 {
+}

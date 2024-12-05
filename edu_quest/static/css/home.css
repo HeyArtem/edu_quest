@@ -20,28 +20,39 @@
     text-align: left;
 }
 
+/* Блок с категориями */
 .container-header {
+    margin-top: 26px;
+    display: flex; /* Включаем flexbox */
+    flex-wrap: wrap; /* Позволяем элементам переноситься на следующую строку */
+    gap: 22px 26px; /* Первый параметр — горизонтальный зазор, второй — вертикальный */
+    justify-content: flex-start; /* Выравнивание по левому краю */
+    padding-left: 41px; /* Отступ от левого края */
+    font-family: 'Inter';
 }
 
-
-.header-selected1 {
+/* Категория */
+.header-selected {
+    height: 55px;
+    font-size: 22px;
+    background-color: #A379C9;
+    border-radius: 50px;
+    max-width: 285px; /* Максимальная ширина блока */
+    padding: 0 43px; /* Отступы внутри блока */
+    display: flex; /* Включаем flexbox */
+    align-items: center; /* Выравнивание по вертикали */
+    justify-content: center; /* Центрируем текст */
+    overflow: hidden; /* Скрываем все, что выходит за пределы блока */
+    text-align: center; /* Выравниваем текст по центру */
 }
 
-.header-selected2 {
+.header-selected span {
+    white-space: nowrap; /* Запрещаем перенос строки */
+    overflow: hidden; /* Скрываем лишний текст */
+    text-overflow: ellipsis; /* Добавляем многоточие */
+    display: inline-block; /* Гарантируем, что текст ведет себя как блочный элемент */
+    max-width: 100%; /* Текст занимает всю доступную ширину родителя */
 }
-
-.header-selected3 {
-}
-
-.header-selected4 {
-}
-
-.header-selected5 {
-}
-
-.header-selected6 {
-}
-
 
 .container-popular-tests {
     font-size: 30px;
@@ -51,20 +62,67 @@
     text-align: left;
 }
 
-
+/* Блок с карточками тестов по 3 шт */
 .container-child {
+    display: flex;
+    flex-wrap: wrap;  /* Разрешаем перенос элементов на новую строку */
+    gap: 41px 26px;   /* расстояние по горизонтали, - по вертикали */
+    margin-top: 36px;
+    justify-content: space-between; /* Распределение карточек по горизонтали с отступами */
+    font-weight: bold; /* Устанавливаем жирный шрифт */
 }
 
+/* Карточка теста */
+.card-test {
+    background-color: #56C7B2;
+    border-radius: 25px;
+    height: 168px;
+    width: 342px;
+    flex: 0 0 342px; /* Устанавливаем фиксированную ширину для карточки */
+    box-sizing: border-box; /* Учитываем отступы в ширине */
+    color: white;
+    text-align: left; /* Выровнять текст по левой стороне */
+    padding-left: 20px; /* Внутренний отступ слева на 20 пикселей */
 
-.card-test1 {
 }
-.card-test2 {
+
+.title-test {
+    font-size: 22px;
+    font-family: 'Inter';
+    margin-top: 14px;
+    margin-left: 23;
+    justify-content: center;
 }
-.card-test3 {
+
+.category-test {
+    height: 32px;
+    width: 200px;
+    border-radius: 50px;
+    background-color: #A379C9;
+    font-size: 14px;
+    display: flex; /* Включаем Flexbox */
+    justify-content: center; /* Выравниваем текст по горизонтали */
+    align-items: center; /* Выравнивание по вертикали */
+    flex-wrap: nowrap;
 }
-.card-test4 {
+
+/* заголовок h1 в category-test по вертикали */
+.category-test h1 {
+    margin: 0; /* Убираем отступы по умолчанию у h1 */
+    line-height: normal; /* Убираем line-height, чтобы не мешал вертикальному выравниванию */
 }
-.card-test5 {
+
+.date-create-test {
+    margin-top: 14px;
+    font-size: 12px;
+    font-family: 'Inter';
+    font-weight: bold; /* Устанавливаем жирный шрифт */
+
 }
-.card-test6 {
+
+.author-test {
+    margin-top: 13px;
+    font-size: 12px;
+    font-family: 'Inter';
+
 }
