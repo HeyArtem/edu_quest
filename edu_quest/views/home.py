@@ -1,7 +1,7 @@
 from django.views.generic import TemplateView
+
 from models_app.models.category.models import Category
 from models_app.models.test.models import Test
-
 
 
 class HomePageView(TemplateView):
@@ -19,9 +19,9 @@ class HomePageView(TemplateView):
 
         # Форматируем дату для каждого теста
         for test_card in test_cards:
-            test_card.formatted_date = test_card.updated_at.strftime('%Y-%m-%d')
+            test_card.formatted_date = test_card.updated_at.strftime("%Y-%m-%d")
 
         # Передаём список категорий в шаблон
-        context['categories'] = categories
-        context['test_cards'] = test_cards
+        context["categories"] = categories
+        context["test_cards"] = test_cards
         return context

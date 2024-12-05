@@ -74,14 +74,7 @@ class TestAdmin(admin.ModelAdmin):
     fieldsets = [
         (
             "Общая информация",
-            {
-                "fields": [
-                    "category",
-                    "id",
-                    "author",
-                    "slug"
-                ]
-            },
+            {"fields": ["category", "id", "author", "slug"]},
         ),
         (
             "Информация о тесте",
