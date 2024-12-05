@@ -9,28 +9,31 @@ class CategoryAdmin(admin.ModelAdmin):
     save_on_top = True
 
     # Подписи в шапке
-    list_display = (
+    list_display = [
         "id",
         "title",
-    )
+    ]
 
     # Кликабельность в шапке
-    list_display_links = (
+    list_display_links = [
         "id",
         "title",
-    )
+    ]
 
     # По каким полям можно осущ-ять поиск (только CharField или TextField)
-    search_fields = ("title",)
+    search_fields = [
+        "title",
+    ]
 
     # Справа Фильтр
-    list_filter = (
-        "id",
+    list_filter = [
         "title",
-    )
+    ]
 
     # Сортирока порядок
-    ordering = ("title",)
+    ordering = [
+        "title",
+    ]
 
     # Пагинация
     list_per_page = 10

@@ -1,6 +1,5 @@
 from django.contrib import admin
 
-# from models_app.admin.answer.admin import AnswerInline
 from models_app.admin.question.admin import QuestionInline
 from models_app.models import Test
 
@@ -10,65 +9,96 @@ class TestAdmin(admin.ModelAdmin):
     # Кнопка сохранить еще и сверху
     save_on_top = True
 
-    # Отображение в теле карточки
-    readonly_fields = ("created_at", "updated_at", "id")
-
     # Подписи в шапке
-    list_display = (
+    list_display = [
         "id",
         "category",
         "title",
         "description",
-        "created_at",
         "updated_at",
         "author",
         "is_published",
-    )
+    ]
 
     # сверху строка навигации по датам
     date_hierarchy = "updated_at"
 
     # Кликабельность в шапке
-    list_display_links = (
+    list_display_links = [
         "id",
         "title",
         "category",
         "description",
-        "created_at",
         "updated_at",
         "author",
-        "is_published",
-    )
+    ]
 
     # По каким полям можно осущ-ять поиск (только CharField или TextField)
-    search_fields = (
+    search_fields = [
         "title",
         "description",
-    )
+    ]
 
     # Справа Фильтр
-    list_filter = (
+    list_filter = [
         "title",
         "category",
-        "description",
         "author",
-        "created_at",
         "updated_at",
         "is_published",
-        "id",
-    )
+        "description",
+        "created_at",
+    ]
+
+    # Возможность отредачить мышкой (is_published/is NOT )
+    list_editable = ("is_published",)
 
     # Сортирока порядок
-    ordering = (
+    ordering = [
         "category",
         "title",
         "is_published",
-    )
+    ]
 
     # Пагинация
     list_per_page = 10
 
-    # Эксперименты
+    # Отображение в теле карточки
+    readonly_fields = ["created_at", "updated_at", "id"]
+
     # добавил, что бы в карточке теста выводились вопросы
     # как сделать еще картинки прикрепленные к вопросам???
     inlines = (QuestionInline,)
+
+    # Блоки в админке
+    fieldsets = [
+        (
+            "Общая информация",
+            {"fields": ["category", "id", "author", "slug"]},
+        ),
+        (
+            "Информация о тесте",
+            {
+                "fields": [
+                    "title",
+                    "description",
+                    "is_published",
+                ]
+            },
+        ),
+        (
+            "Прочая информация",
+            {
+                "fields": [
+                    "created_at",
+                    "updated_at",
+                ]
+            },
+        ),
+    ]
+
+
+# В разделе "Пользователь" вывожу его "Тесты"
+class TestInline(admin.TabularInline):
+    model = Test
+    extra = 0

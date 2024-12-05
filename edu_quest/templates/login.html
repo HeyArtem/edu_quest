@@ -6,41 +6,86 @@
 {% endblock %}
 
 {% block content %}
-<!--    <main class="container">-->
+
     <div class="container">
-        <div class="title">
-            <h1>Авторизация</h1>
-        </div>
         <div class="child-container">
+            <div class="title">
+                <h1>Авторизация</h1>
+            </div>
+
             <div class="form">
-                <div class="login">
-                    <h1>Логин</h1>
+                <form action="{% url 'login' %}" method="post">
+                    {% csrf_token %}
+                    <div class="login">
+                        <h1>Логин</h1>
+                    </div>
+                    <div class="field-login">
+                        <input type="text" name="username">
+                    </div>
+
+                    <div class="password">
+                        <h1>Пароль</h1>
+                    </div>
+
+                    <!--Поле "password2" скрыто-->
+                    <div class="field-password">
+                        <input type="text" class="password1" name="password1">
+                        <input type="hidden" class="password2" name="password2">
+                    </div>
+                    <div class="field-entry">
+                        <button type="submit">Войти</button>
+                    </div>
+                </form>
+
+                <div id="errorPopup" class="popup" style="display: none;">
+                    <div class="popup-content">
+                        <span class="close" onclick="closePopup()">&times;</span>
+                        <h2>Ошибки:</h2>
+                        <div id="errorMessages">
+                            {{ form.errors }}
+                        </div>
+                    </div>
                 </div>
-                <div class="field-login">
-                    <!--поле для ввода login-->
-                </div>
-                <div class="password">
-                    <h1>Пароль</h1>
-                </div>
-                <div class="field-password">
-                    <!--поле для ввода password-->
-                </div>
-                <div class="field-entry">
-                    <button>Войти</button>
+            </div>
+
+            <div class="footer">
+                <div class="field-non-account">
+                    <div class="non-account">
+                        <h1>Нет аккаунта --></h1>
+                    </div>
+                    <div class="plus">
+                        <img  src="{% static 'img/plus.png' %}" alt="...">
+                    </div>
                 </div>
 
             </div>
         </div>
-
-        <div class="footer">
-            <div class="non-account">
-                <h1>Нет аккаунта --></h1>
-            </div>
-            <div class="plus">
-                <img  src="{% static 'img/plus.png' %}" alt="...">
-            </div>
-        </div>
-<!--    </main>-->
     </div>
+
+    <!-- Автоматич заполнение "password2"-->
+    <!-- Popup с ощибкой -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const password1Field = document.querySelector('.password1');
+            const password2Field = document.querySelector('.password2');
+
+            password1Field.addEventListener('input', () => {
+                password2Field.value = password1Field.value;
+            });
+
+            const errorPopup = document.getElementById('errorPopup');
+            const errorMessagesDiv = document.getElementById('errorMessages');
+            {% if form.errors %}
+                const errorMessages = `{{ form.errors|escapejs }}`;
+                errorMessagesDiv.innerHTML = errorMessages.replace(/\n/g, '<p></p>');
+                errorPopup.style.display = 'flex';
+            {% endif %}
+        });
+
+        function closePopup() {
+            const errorPopup = document.getElementById('errorPopup');
+            errorPopup.style.display = 'none';
+        }
+    </script>
 
 {% endblock %}
