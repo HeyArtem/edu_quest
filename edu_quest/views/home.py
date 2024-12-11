@@ -15,7 +15,9 @@ class HomePageView(TemplateView):
         categories = Category.objects.all()
 
         # Извлекаем тестовые карточки из базы данных
-        test_cards = Test.objects.filter(is_published=True)
+        test_cards = Test.objects.filter(is_published=True)[
+            :6
+        ]  # Берём только первые 6 карточек
 
         # Форматируем дату для каждого теста
         for test_card in test_cards:

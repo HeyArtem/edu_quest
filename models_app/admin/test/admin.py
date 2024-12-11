@@ -14,7 +14,6 @@ class TestAdmin(admin.ModelAdmin):
         "id",
         "category",
         "title",
-        "description",
         "updated_at",
         "author",
         "is_published",
@@ -28,7 +27,6 @@ class TestAdmin(admin.ModelAdmin):
         "id",
         "title",
         "category",
-        "description",
         "updated_at",
         "author",
     ]
@@ -41,13 +39,9 @@ class TestAdmin(admin.ModelAdmin):
 
     # Справа Фильтр
     list_filter = [
-        "title",
         "category",
-        "author",
         "updated_at",
         "is_published",
-        "description",
-        "created_at",
     ]
 
     # Возможность отредачить мышкой (is_published/is NOT )
@@ -61,7 +55,7 @@ class TestAdmin(admin.ModelAdmin):
     ]
 
     # Пагинация
-    list_per_page = 10
+    list_per_page = 30
 
     # Отображение в теле карточки
     readonly_fields = ["created_at", "updated_at", "id"]
@@ -98,7 +92,7 @@ class TestAdmin(admin.ModelAdmin):
     ]
 
 
-# В разделе "Пользователь" вывожу его "Тесты"
-class TestInline(admin.TabularInline):
+# В разделе "Пользователь" вывожу его "Тесты" (StackedInline-в строку)
+class TestInline(admin.StackedInline):
     model = Test
     extra = 0

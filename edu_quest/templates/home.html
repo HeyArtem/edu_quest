@@ -14,18 +14,21 @@
 
         <!--Категории тестов-->
         <div class="container-header">
-            <!-- Вывожу первые 7 элементов из списка categories -->
-            {% for category in categories|slice:":7" %}
+            <!-- Вывожу categories -->
+            {% for category in categories %}
                 <div class="header-selected">
                     <span><a href="#">{{ category.title }}</a></span>
                 </div>
             {% empty %}
                 <p>Категории пока не созданы.</p>
             {% endfor %}
-            <!-- Добавляем блок "+" после всех категорий -->
-            <div class="header-selected add-category">
-                <span><a href="#">+</a></span>
-            </div>
+
+            <!-- Добавить новую категорию, только для админа -->
+            {% if user.is_staff %}
+                <div class="header-selected add-category">
+                    <span><a href="#">+</a></span>
+                </div>
+            {% endif %}
         </div>
 
         <!--Карточки популярные тесты заголовок-->
@@ -33,33 +36,35 @@
             <h1>Популярные тесты</h1>
         </div>
 
-        <!--Блок с карточками тестов-->
-        <div class="container-child">
-            {% for test_card in test_cards %}
-                <!--Карточка теста-->
-                <div class="card-test">
-                    <div class="title-test">
-                        <h1>{{ test_card.title }}</h1>
+        <div class="all-cards-test">
+            <!--Блок с карточками тестов-->
+            <div class="container-child">
+                {% for test_card in test_cards %} <!-- вывод первых 6 карточек -->
+                    <!--Карточка теста-->
+                    <div class="card-test">
+                        <div class="title-test">
+                            <h1>{{ test_card.title }}</h1>
+                        </div>
+                        <div class="category-test">
+                            <h1>{{ test_card.category }}</h1>
+                        </div>
+                        <div class="date-create-test">
+                            <h1>Дата публикации: {{ test_card.formatted_date }}</h1>
+                        </div>
+                        <div class="author-test">
+                            <h1>Автор: {{ test_card.author }}</h1>
+                        </div>
                     </div>
-                    <div class="category-test">
-                        <h1>{{ test_card.category }}</h1>
-                    </div>
-                    <div class="date-create-test">
-                        <h1>Дата публикации: {{ test_card.formatted_date }}</h1>
-                    </div>
-                    <div class="author-test">
-                        <h1>Автор: {{ test_card.author }}</h1>
-                    </div>
-                </div>
-                <!--проверяет, делится ли текущий номер карточки на 3-->
-                <!--divisibleby:3 — это фильтр, который проверяет, делится ли число на 3 без остатка.-->
-                <!--Если условие выполняется (при 3-й, 6-й, 9-й карточке),
-                тогда будет закрыт текущий <div class="container-child">
-                 откроется новый.-->
-                {% if forloop.counter|divisibleby:3 %}
-                    </div><div class="container-child"> <!-- Новый ряд -->
-                {% endif %}
-            {% endfor %}
+                    <!--проверяет, делится ли текущий номер карточки на 3-->
+                    <!--divisibleby:3 — это фильтр, который проверяет, делится ли число на 3 без остатка.-->
+                    <!--Если условие выполняется (при 3-й, 6-й, 9-й карточке),
+                    тогда будет закрыт текущий <div class="container-child">
+                     откроется новый.-->
+                    {% if forloop.counter|divisibleby:3 %}
+                        </div><div class="container-child"> <!-- Новый ряд -->
+                    {% endif %}
+                {% endfor %}
+            </div>
         </div>
     </div>
 

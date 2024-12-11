@@ -31,8 +31,6 @@ class AnswerAdmin(admin.ModelAdmin):
 
     # Справа Фильтр
     list_filter = [
-        "question",
-        "text",
         "is_correct",
     ]
 

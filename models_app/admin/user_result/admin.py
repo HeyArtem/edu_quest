@@ -24,12 +24,15 @@ class UserResultAdmin(admin.ModelAdmin):
         "date",
     ]
 
+    # По каким полям можно осущ-ять поиск (только CharField или TextField)
+    search_fields = [
+        "test",
+        "user",
+    ]
+
     # Справа Фильтр
     list_filter = [
-        "user",
         "date",
-        "test",
-        "answers",
     ]
 
     # Сортирока порядок

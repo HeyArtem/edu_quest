@@ -2,85 +2,106 @@
 {% load static %}
 
 {% block style %}
-    <link rel="stylesheet" href="{% static 'css/register.css' %}">
+<link rel="stylesheet" href="{% static 'css/register.css' %}">
 {% endblock %}
 
 {% block content %}
-    <div class="container">
-        <div class="child-container">
-            <div class="title">
-                <h1>Регистрация</h1>
-            </div>
+<div class="container">
+    <div class="child-container">
+        <div class="title">
+            <h1>Регистрация</h1>
+        </div>
 
-            <div class="form">
-                <form action="{% url 'register' %}" method="post">
-                    {% csrf_token %}
-                    <div class="login">
-                        <h1>Логин</h1>
-                    </div>
-                    <div class="field-login">
-                        <input type="text" name="username">
-                    </div>
-
-
-                    <div class="password">
-                        <h1>Пароль</h1>
-                    </div>
-
-                    <!--Поле "password2" скрыто-->
-                    <div class="field-password">
-                        <input type="text" class="password1" name="password1">
-                        <input type="hidden" class="password2" name="password2">
-                    </div>
-                    <div class="field-create">
-                        <button type="submit">Создать</button>
-                    </div>
-                </form>
-
-                <div id="errorPopup" class="popup" style="display: none;">
-                    <div class="popup-content">
-                        <span class="close" onclick="closePopup()">&times;</span>
-                        <h2>Ошибки:</h2>
-                        <div id="errorMessages">
-                            {{ form.errors }}
-                        </div>
-                    </div>
+        <div class="form">
+            <form action="{% url 'register' %}" method="post">
+                {% csrf_token %}
+                <div class="login">
+                    <h1>Логин</h1>
                 </div>
-            </div>
+                <div class="field-login">
+                    <input type="text" name="username">
+                </div>
 
-            <div class="footer">
-                <div class="go-back">
-                    <button>Вернуться обратно</button>
+                <div class="password">
+                    <h1>Пароль</h1>
+                </div>
+
+                <!--Поле "password2" скрыто-->
+                <div class="field-password">
+                    <input type="text" class="password1" name="password1">
+                    <input type="hidden" class="password2" name="password2">
+                </div>
+                <div class="field-create">
+                    <button type="submit">Создать</button>
+                </div>
+            </form>
+
+            <!-- Всплывающее окно с ошибками Popup -->
+            <div id="errorPopup" class="popup"
+                 style="{% if form.errors %}
+                        display: flex;
+                     {% else %}
+                        display: none;
+                    {% endif %}">
+
+
+                <div class="popup-content">
+                    <!-- кнопка закрытия Popup -->
+                    <span class="close">&times;</span>
+
+                    <!-- заполняем всплывающее окно -->
+                    <!-- Ошибки с маркеркерами -->
+                    <div>
+                        <h2>Ошибки:</h2>
+                        {% if form.errors %}
+                        <ul>
+                            {% for field, errors in form.errors.items %}
+                            <li>
+                                {{ field }}:
+                                <ul>
+                                    {% for error in errors %}
+                                    <li>- {{ error }}</li>
+                                    {% endfor %}
+                                </ul>
+                            </li>
+                            {% endfor %}
+                        </ul>
+                        {% endif %}
+                    </div>
+
                 </div>
             </div>
         </div>
+
+        <div class="footer">
+            <div class="go-back">
+                <button>Вернуться обратно</button>
+            </div>
+        </div>
     </div>
+</div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+    // Находим элементы
+    const password1Field = document.querySelector('.password1');
+    const password2Field = document.querySelector('.password2');
+
+    // Копируем значение при каждом вводе в password1
+    password1Field.addEventListener('input', () => {
+        password2Field.value = password1Field.value;
+    });
+});
+    // закрыть окно по клику на кнопку
+    document.addEventListener('DOMContentLoaded', () => {
+    const closeButton = document.querySelector('.close');
+    const errorPopup = document.getElementById('errorPopup');
+
+    closeButton.addEventListener('click', () => {
+        errorPopup.style.display = 'none';
+    });
+});
+</script>
 
 
-    <!-- Автоматич заполнение "password2"-->
-    <!-- Popup с ощибкой -->
-
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            const password1Field = document.querySelector('.password1');
-            const password2Field = document.querySelector('.password2');
-
-            password1Field.addEventListener('input', () => {
-                password2Field.value = password1Field.value;
-            });
-
-            const errorPopup = document.getElementById('errorPopup');
-            const errorMessagesDiv = document.getElementById('errorMessages');
-            {% if form.errors %}
-                const errorMessages = `{{ form.errors|escapejs }}`;
-                errorMessagesDiv.innerHTML = errorMessages.replace(/\n/g, '<p></p>');
-                errorPopup.style.display = 'flex';
-            {% endif %}
-        });
-
-        function closePopup() {
-            const errorPopup = document.getElementById('errorPopup');
-            errorPopup.style.display = 'none';
-        }
-    </script>
 {% endblock %}

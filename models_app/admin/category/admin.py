@@ -5,9 +5,6 @@ from models_app.models import Category
 
 @admin.register(Category)
 class CategoryAdmin(admin.ModelAdmin):
-    # Кнопка сохранить еще и сверху
-    save_on_top = True
-
     # Подписи в шапке
     list_display = [
         "id",
@@ -25,15 +22,10 @@ class CategoryAdmin(admin.ModelAdmin):
         "title",
     ]
 
-    # Справа Фильтр
-    list_filter = [
-        "title",
-    ]
-
     # Сортирока порядок
     ordering = [
         "title",
     ]
 
     # Пагинация
-    list_per_page = 10
+    list_per_page = 25

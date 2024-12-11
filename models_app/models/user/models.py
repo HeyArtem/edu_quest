@@ -3,7 +3,9 @@ from django.db import models
 
 
 class User(AbstractUser):
-    avatar = models.ImageField(upload_to="users/avatar/", verbose_name="Аватар")
+    avatar = models.ImageField(
+        upload_to="users/avatar/", null=True, blank=True, verbose_name="Аватар"
+    )
 
     def __str__(self):
         return self.username
