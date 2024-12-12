@@ -7,9 +7,6 @@ from models_app.models import Question
 # попробовать картинку
 @admin.register(Question)
 class QuestionAdmin(admin.ModelAdmin):
-    # Кнопка сохранить еще и сверху
-    save_on_top = True
-
     # Подписи в шапке
     list_display = [
         "id",
@@ -34,7 +31,6 @@ class QuestionAdmin(admin.ModelAdmin):
     # Справа Фильтр
     list_filter = [
         "test",
-        "text",
     ]
 
     # Сортирока порядок

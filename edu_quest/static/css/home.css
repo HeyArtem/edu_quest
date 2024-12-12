@@ -62,6 +62,12 @@
     text-align: left;
 }
 
+/* Блок с карточками тестов */
+.all-cards-test {
+    padding: 0 20px; /* Верх/Низ: 0, Слева/Справа: 39px */
+
+}
+
 /* Блок с карточками тестов по 3 шт */
 .container-child {
     display: flex;

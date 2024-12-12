@@ -5,20 +5,18 @@ from models_app.models import Favorite
 
 @admin.register(Favorite)
 class FavoriteAdmin(admin.ModelAdmin):
-    # Кнопка сохранить еще и сверху
-    save_on_top = True
-
     # Подписи в шапке
-    # list_display = ('id', 'User', 'test',)
     list_display = [
         "id",
         "test",
+        "user",
     ]
 
     # Кликабельность в шапке
     list_display_links = [
         "id",
         "test",
+        "user",
     ]
 
     # По каким полям можно осущ-ять поиск (только CharField или TextField)
@@ -38,4 +36,4 @@ class FavoriteAdmin(admin.ModelAdmin):
     ]
 
     # Пагинация
-    list_per_page = 10
+    list_per_page = 25

@@ -21,7 +21,7 @@ class RegisterUserView(CreateView):
 
         # Логиню пользователя
         login(self.request, user)
-        return redirect("index")
+        return redirect("home")
 
 
 class UserLoginView(LoginView):
@@ -31,4 +31,4 @@ class UserLoginView(LoginView):
 
     # В случае успеха
     def get_success_url(self):
-        return reverse_lazy("index")
+        return reverse_lazy("home")
