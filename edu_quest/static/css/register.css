@@ -83,6 +83,7 @@
     margin: auto;
 }
 
+/* Кнопка Создать */
 .field-create {
     width: 472px;
     height: 67px;
@@ -116,19 +117,15 @@ button {
     position: relative;
 }
 
-/* Кнопка закрытия */
-.popup .close {
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    font-size: 20px;
-    cursor: pointer;
-    color: #888;
+.popup-content {
+    /* max-width: 900px; */
+    width: 100%;
+    text-align: center; /* Для выравнивания текста */
 }
 
-.popup .close:hover {
-    color: #000;
-}
+
+
+
 
 /* Ошибки в виде списка */
 #errorMessages {
@@ -168,7 +165,7 @@ button {
     align-items: center; /* Центрируем по вертикали */
 }
 
- /*  */
+
 .popup {
     position: fixed; /* всегда остается на одном месте на экране, даже при прокрутке страницы */
     top: 50%;
@@ -187,11 +184,7 @@ button {
     max-width: 90%; /* Для адаптивности */
 }
 
-.popup-content {
-    /* max-width: 900px; */
-    width: 100%;
-    text-align: center; /* Для выравнивания текста */
-}
+
 
 .popup .close {
     position: absolute;
@@ -202,6 +195,9 @@ button {
     color: #555;
 }
 
+.popup .close:hover {
+    color: #000;
+}
 
 .popup ul {
     text-align: left;
