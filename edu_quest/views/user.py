@@ -25,9 +25,15 @@ class RegisterUserView(CreateView):
 
 
 class UserLoginView(LoginView):
+    """
+    Авторизация пользователя
+    """
+
+    print("[!]  UserLoginView from user.py")
     # Форма для логина
     form_class = LoginUserForm
     template_name = "login.html"
+    print("[!] form_class:", form_class)
 
     # В случае успеха
     def get_success_url(self):

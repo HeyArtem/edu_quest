@@ -2,90 +2,102 @@
 {% load static %}
 
 {% block style %}
-    <link rel="stylesheet" href="{% static 'css/login.css' %}">
+<link rel="stylesheet" href="{% static 'css/login.css' %}">
 {% endblock %}
 
 {% block content %}
 
-    <div class="container">
-        <div class="child-container">
-            <div class="title">
-                <h1>Авторизация</h1>
-            </div>
+<div class="container">
+    <div class="child-container">
+        <div class="title">
+            <h1>Авторизация</h1>
+        </div>
 
-            <div class="form">
-                <form action="{% url 'login' %}" method="post">
-                    {% csrf_token %}
-                    <div class="login">
-                        <h1>Логин</h1>
-                    </div>
-                    <div class="field-login">
-                        <input type="text" name="username">
-                    </div>
+        <div class="form">
+            <form action="{% url 'login' %}" method="post">
+                {% csrf_token %}
 
-                    <div class="password">
-                        <h1>Пароль</h1>
-                    </div>
+                <div class="login">
+                    <h1>Логин</h1>
+                </div>
 
-                    <!--Поле "password2" скрыто-->
-                    <div class="field-password">
-                        <input type="text" class="password1" name="password1">
-                        <input type="hidden" class="password2" name="password2">
-                    </div>
-                    <div class="field-entry">
-                        <button type="submit">Войти</button>
-                    </div>
-                </form>
+                <!-- Ввод логина -->
+                <!-- required-поле обязательно для заполнения -->
+                <div class="field-login">
+                    <input type="text" name="username" required>
+                </div>
 
-                <div id="errorPopup" class="popup" style="display: none;">
-                    <div class="popup-content">
-                        <span class="close" onclick="closePopup()">&times;</span>
+                <div class="password">
+                    <h1>Пароль</h1>
+                </div>
+
+                <!-- Ввод пароля -->
+                <div class="field-password">
+                    <input type="text" name="password" required>
+                </div>
+
+                <!-- Отправить данные -->
+                <div class="field-entry">
+                    <button type="submit">Войти</button>
+                </div>
+            </form>
+
+            <!-- Всплывающее окно с ошибками Popup -->
+            <div id="errorPopup" class="popup"
+                 style="{% if form.errors %}
+                        display: flex;
+                     {% else %}
+                        display: none;
+                    {% endif %}">
+
+
+                <div class="popup-content">
+                    <!-- кнопка закрытия Popup -->
+                    <span class="close">❌️</span>
+
+                    <!-- заполняем всплывающее окно -->
+                    <!-- Ошибки с маркеркерами -->
+                    <div>
                         <h2>Ошибки:</h2>
-                        <div id="errorMessages">
-                            {{ form.errors }}
-                        </div>
+                        {% if form.errors %}
+                        <ul>
+                            {% for field, errors in form.errors.items %}
+                                <li>▫️{{ errors }}</li>
+                            {% endfor %}
+                        </ul>
+                        {% endif %}
                     </div>
                 </div>
             </div>
+        </div>
 
-            <div class="footer">
+
+        <div class="footer">
+            <a href="{% url 'register' %}" class="field-non-account-link">
                 <div class="field-non-account">
                     <div class="non-account">
                         <h1>Нет аккаунта --></h1>
                     </div>
                     <div class="plus">
-                        <img  src="{% static 'img/plus.png' %}" alt="...">
+                        <img src="{% static 'img/plus.png' %}" alt="...">
                     </div>
                 </div>
-
-            </div>
+            </a>
         </div>
+
     </div>
+</div>
 
-    <!-- Автоматич заполнение "password2"-->
-    <!-- Popup с ощибкой -->
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            const password1Field = document.querySelector('.password1');
-            const password2Field = document.querySelector('.password2');
+<script>
+    // закрыть окно по клику на кнопку
+    document.addEventListener('DOMContentLoaded', () => {
+    const closeButton = document.querySelector('.close');
+    const errorPopup = document.getElementById('errorPopup');
 
-            password1Field.addEventListener('input', () => {
-                password2Field.value = password1Field.value;
-            });
-
-            const errorPopup = document.getElementById('errorPopup');
-            const errorMessagesDiv = document.getElementById('errorMessages');
-            {% if form.errors %}
-                const errorMessages = `{{ form.errors|escapejs }}`;
-                errorMessagesDiv.innerHTML = errorMessages.replace(/\n/g, '<p></p>');
-                errorPopup.style.display = 'flex';
-            {% endif %}
-        });
-
-        function closePopup() {
-            const errorPopup = document.getElementById('errorPopup');
-            errorPopup.style.display = 'none';
-        }
-    </script>
+    closeButton.addEventListener('click', () => {
+        errorPopup.style.display = 'none';
+    });
+});
+</script>
 
 {% endblock %}
