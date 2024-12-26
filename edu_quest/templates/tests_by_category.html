@@ -1,0 +1,62 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block style %}
+    <link rel="stylesheet" href="{% static 'css/tests_by_category.css' %}">
+{% endblock %}
+
+{% block content %}
+  <div class="container">
+
+    <!-- Название категории -->
+    <div class="container-title">
+      <h1>Все тесты категории: {{ category_name }}</h1>
+    </div>
+
+    <!-- Карточки с тестами (одной категории) -->
+    <div class="all-cards-test">
+
+      <!-- Блок с карточками тестов -->
+      <div class="container-child">
+        {% if test_cards %}
+          {% for test_card in test_cards %}
+
+            <!--Карточка теста-->
+            <div class="card-test">
+              <div class="date-author">
+                <div class="date-test">
+                  <h1>{{ test_card.formatted_date }}</h1>
+                </div>
+                <div class="author-test">
+                  <h1>{{ test_card.author }}</h1>
+                </div>
+              </div>
+
+              <div class="title-test">
+                <h1>{{ test_card.title }}</h1>
+              </div>
+            </div>
+
+            <!-- проверяет, делится ли текущий номер карточки на 3-->
+            <!-- тогда будет закрыт текущий <div class="container-child">
+             откроется новый.-->
+            {% if forloop.counter|divisibleby:3 %}
+                </div><div class="container-child"> <!-- Новый ряд -->
+            {% endif %}
+          {% endfor %}
+        {% else %}
+          <p>В этой категории пока нет тестов.</p>
+        {% endif %}
+      </div>
+    </div>
+
+
+
+
+
+    <a href="{% url 'home' %}">Вернуться на главную</a>
+
+
+
+  </div>
+{% endblock %}

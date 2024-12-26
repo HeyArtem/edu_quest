@@ -1,6 +1,7 @@
 from django.contrib import admin
 from django.utils.safestring import mark_safe
 
+from models_app.admin.answer.admin import AnswerInline
 from models_app.models import Question
 
 
@@ -56,6 +57,8 @@ class QuestionAdmin(admin.ModelAdmin):
         "id",
         "get_html_image",
     ]
+
+    inlines = [AnswerInline]
 
     # Отображение аватара-картинки
     def get_html_image(self, obj):

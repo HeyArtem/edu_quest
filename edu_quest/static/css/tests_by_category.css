@@ -1,0 +1,66 @@
+.container {
+    width: 1184px;
+    height: 100%;
+    min-height: 100vh;
+    background-color: #ADB9E3;
+    border-radius: 80px 80px 0 0;
+    margin-top: 33px;
+    padding-top: 1px;
+    box-sizing: border-box;
+    font-family: 'Inter';
+    text-align: center;
+    color: white;
+}
+
+.container-title {
+    font-size: 30px;
+    font-weight: bold;
+    margin-top: 45px;
+    margin-left: 54px;
+    text-align: left;
+}
+
+/* Блок с карточками тестов */
+.all-cards-test {
+    padding: 0 20px; /* Верх/Низ: 0, Слева/Справа: 39px */
+}
+
+/* Блок с карточками тестов по 3 шт */
+.container-child {
+    display: flex;
+    flex-wrap: wrap;  /* Разрешаем перенос элементов на новую строку */
+    gap: 41px 26px;   /* расстояние по горизонтали, - по вертикали */
+    margin-top: 36px;
+    justify-content: space-between; /* Распределение карточек по горизонтали с отступами */
+    font-weight: bold; /* Устанавливаем жирный шрифт */
+}
+
+/* Карточка теста */
+.card-test {
+    background-color: #56C7B2;
+    border-radius: 25px;
+    height: 168px;
+    width: 342px;
+    flex: 0 0 342px; /* Устанавливаем фиксированную ширину для карточки */
+    box-sizing: border-box; /* Учитываем отступы в ширине */
+    color: white;
+    text-align: left; /* Выровнять текст по левой стороне */
+    padding-left: 20px; /* Внутренний отступ слева на 20 пикселей */
+}
+
+/* блок с датой и автором */
+.date-author {
+    width: 315px;
+    height: 31px;
+    margin-top: 20px;
+    flex-wrap: wrap;  /* Разрешаем перенос элементов на новую строку */
+    justify-content: space-between; /* Распределение карточек по горизонтали с отступами */
+}
+
+.title-test {
+    height: 103px;
+    width: 300px;
+    border-radius: 25px;
+    background-color: #A379C9;
+
+}

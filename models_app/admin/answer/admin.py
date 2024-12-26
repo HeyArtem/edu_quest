@@ -27,6 +27,7 @@ class AnswerAdmin(admin.ModelAdmin):
     # По каким полям можно осущ-ять поиск (только CharField или TextField)
     search_fields = [
         "text",
+        # "question", # Как сделать поиск по тексту вопроса
     ]
 
     # Справа Фильтр
@@ -43,4 +44,9 @@ class AnswerAdmin(admin.ModelAdmin):
     ]
 
     # Пагинация
-    list_per_page = 20
+    list_per_page = 60
+
+
+class AnswerInline(admin.TabularInline):
+    model = Answer
+    extra = 0
