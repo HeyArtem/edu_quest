@@ -24,7 +24,7 @@ class RegisterUserView(CreateView):
         return redirect("home")
 
 
-class UserLoginView(LoginView):
+class LoginUserView(LoginView):
     """
     Авторизация пользователя
     """

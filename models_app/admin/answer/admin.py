@@ -47,6 +47,8 @@ class AnswerAdmin(admin.ModelAdmin):
     list_per_page = 60
 
 
+# Инлайн отображение ответов в админка\вопросы
 class AnswerInline(admin.TabularInline):
     model = Answer
+    # Количество дополнительных пустых ячеек
     extra = 0

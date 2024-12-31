@@ -11,19 +11,11 @@ class HomePageView(TemplateView):
         # Получаем стандартный контекст
         context = super().get_context_data(**kwargs)
 
+        # Передаём список категорий в шаблон
         # Извлекаем категории из базы данных
-        categories = Category.objects.all()
-
+        context["categories"] = Category.objects.all()
         # Извлекаем тестовые карточки из базы данных
-        test_cards = Test.objects.filter(is_published=True)[
+        context["tests"] = Test.objects.filter(is_published=True)[
             :6
         ]  # Берём только первые 6 карточек
-
-        # Форматируем дату для каждого теста
-        for test_card in test_cards:
-            test_card.formatted_date = test_card.updated_at.strftime("%Y-%m-%d")
-
-        # Передаём список категорий в шаблон
-        context["categories"] = categories
-        context["test_cards"] = test_cards
         return context

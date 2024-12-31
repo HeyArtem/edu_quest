@@ -58,6 +58,7 @@ class QuestionAdmin(admin.ModelAdmin):
         "get_html_image",
     ]
 
+    # Инлайн ответы
     inlines = [AnswerInline]
 
     # Отображение аватара-картинки

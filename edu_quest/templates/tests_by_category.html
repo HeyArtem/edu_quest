@@ -10,7 +10,11 @@
 
     <!-- Название категории -->
     <div class="container-title">
-      <h1>Все тесты категории: {{ category_name }}</h1>
+      {% if category_title %}
+        <h1>Все тесты категории: {{ category_title }}</h1>
+      {% else %}
+        <h1>Неизвестная категория</h1>
+      {% endif %}
     </div>
 
     <!-- Карточки с тестами (одной категории) -->
@@ -18,22 +22,22 @@
 
       <!-- Блок с карточками тестов -->
       <div class="container-child">
-        {% if test_cards %}
-          {% for test_card in test_cards %}
+        {% if tests %}
+          {% for test in tests %}
 
             <!--Карточка теста-->
             <div class="card-test">
               <div class="date-author">
                 <div class="date-test">
-                  <h1>{{ test_card.formatted_date }}</h1>
+                  <h1>{{ test.updated_at|date:"Y-m-d"  }}</h1>
                 </div>
                 <div class="author-test">
-                  <h1>{{ test_card.author }}</h1>
+                  <h1>{{ test.author }}</h1>
                 </div>
               </div>
 
               <div class="title-test">
-                <h1>{{ test_card.title }}</h1>
+                <h1>{{ test.title }}</h1>
               </div>
             </div>
 
@@ -50,13 +54,6 @@
       </div>
     </div>
 
-
-
-
-
     <a href="{% url 'home' %}">Вернуться на главную</a>
-
-
-
   </div>
 {% endblock %}
