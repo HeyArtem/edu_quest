@@ -14,10 +14,15 @@ class Question(models.Model):
         upload_to="questions/image/%Y/%m/%d", verbose_name="Картинка"
     )
 
+    position = models.PositiveIntegerField(
+        default=1, null=False, blank=False, verbose_name="Позиция в тесте"
+    )
+
     def __str__(self):
         return self.text
 
     class Meta:
         db_table = "questions"
+        # unique_together = ["test", "position"]
         verbose_name = "Вопрос"
         verbose_name_plural = "Вопросы"

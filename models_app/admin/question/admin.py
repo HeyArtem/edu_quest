@@ -12,6 +12,7 @@ class QuestionAdmin(admin.ModelAdmin):
     list_display = [
         "id",
         "text",
+        "position",
         "test",
         "get_html_image",
     ]
@@ -48,8 +49,10 @@ class QuestionAdmin(admin.ModelAdmin):
     fields = [
         "id",  # (работает вкупе с readonly_fields)
         "text",
+        "position",
         "test",
-        "get_html_image",  # (работает вкупе с readonly_fields)
+        "image",
+        "get_html_image",  # (работает вкупе с readonly_fields. Это Превью)
     ]
 
     # Поля в форме только для чтения
@@ -68,7 +71,7 @@ class QuestionAdmin(admin.ModelAdmin):
         return " - "
 
     # Подпись в шапке 'Аватар' (не get_html_image )
-    get_html_image.short_description = "Картинка"
+    get_html_image.short_description = "Превью"
 
 
 # В разделе "Тесты" вывожу для него "Вопросы"

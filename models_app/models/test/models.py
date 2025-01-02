@@ -22,6 +22,12 @@ class Test(models.Model):
     )
     is_published = models.BooleanField(default=False, verbose_name="Опубликовано")
     slug = models.SlugField(max_length=255, unique=True, verbose_name="Слаг")
+    cover = models.ImageField(
+        upload_to="users/cover/",
+        null=False,  # Разрешает на уровне БД
+        blank=False,  # Разрешает при сохранении проекта
+        verbose_name="Обложка",
+    )
 
     def __str__(self):
         return self.title

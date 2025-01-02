@@ -76,6 +76,7 @@ class TestAdmin(admin.ModelAdmin):
                 "fields": [
                     "title",
                     "description",
+                    "cover",
                     "is_published",
                 ]
             },
