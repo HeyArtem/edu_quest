@@ -78,3 +78,17 @@ class QuestionAdmin(admin.ModelAdmin):
 class QuestionInline(admin.TabularInline):
     model = Question
     extra = 0
+    fields = [
+        "text",
+        "position",
+        "get_html_image_question",
+        "image",
+    ]
+    readonly_fields = ["get_html_image_question"]  # Запрещаем редактирование preview
+
+    def get_html_image_question(self, obj):
+        if obj.image:
+            return mark_safe(f'<img src="{obj.image.url}" height=50 width=50 >')
+        return " - "
+
+    get_html_image_question.short_description = "Превью_вопроса"

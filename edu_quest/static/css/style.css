@@ -127,7 +127,41 @@ header {
     font-size: 24px;
 }
 
+
+/* Иконка пользователя */
+.profile-container {
+    position: relative;
+    display: inline-block;
+}
+
 .header-item-profile {
-    width: 40px;
     height: 40px;
+    width: 40px;
+}
+
+/* Dropdown menu */
+.profile-menu {
+    position: absolute;
+    top: 10px; /* Поднимаю выше */
+    left: -150px; /* Двигаю левее */
+    right: 0;
+    background: #A379C9;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    border-radius: 20px;
+    display: none;
+    width: 157px;
+    height: 153px;
+}
+
+.profile-menu a {
+    display: block;
+    font-family: 'Inter';
+    padding: 10px;
+    text-decoration: none;
+    color: white;
+    text-align: center;  /* Выравнивание текста по центру */
+}
+
+.profile-menu a:hover {
+    background: #56C7B2;
 }

@@ -39,11 +39,53 @@
             <p class="header-item-text">Результаты</p>
         </a>
     </div>
-    <div>
-        <a href="#">
-            <img class="header-item-profile" src="{% static 'img/profile.png' %}" alt="...">
-        </a>
+
+    <div class="profile-container">
+        {% if request.user.is_authenticated %}
+            <!-- Если пользователь залогинен -->
+            <a href="#">
+                <img class="header-item-profile" src="{% static 'img/door_exit.png' %}" alt="...">
+            </a>
+            <div class="profile-menu">
+                <a href="#">Профиль</a>
+                <a href="#">Избранное</a>
+                <a href="#">Результаты</a>
+                <a href="{% url 'logout' %}">Выход</a>
+            </div>
+        {% else %}
+            <!-- Если пользователь не залогинен (анонимный) -->
+            <a href="#">
+                <img class="header-item-profile" src="{% static 'img/profile.png' %}" alt="...">
+            </a>
+            <div class="profile-menu">
+                <a href="{% url 'login' %}">Войти</a>
+                <a href="{% url 'register' %}">Зарегистрироваться</a>
+            </div>
+        {% endif %}
     </div>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const profileContainers = document.querySelectorAll(".profile-container");
+
+        profileContainers.forEach(container => {
+            const profileIcon = container.querySelector("a");  // выбор иконки
+            const profileMenu = container.querySelector(".profile-menu");
+
+
+            profileIcon.addEventListener("mouseenter", function () {
+                profileMenu.style.display = "block";
+            });
+
+            profileMenu.addEventListener("mouseleave", function () {
+                profileMenu.style.display = "none";
+            });
+        });
+    });
+</script>
+
+
+
 </header>
 
 {% block content %}

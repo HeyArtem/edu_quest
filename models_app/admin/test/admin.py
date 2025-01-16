@@ -1,4 +1,5 @@
 from django.contrib import admin
+from django.utils.safestring import mark_safe
 
 from models_app.admin.question.admin import QuestionInline
 from models_app.models import Test
@@ -6,8 +7,7 @@ from models_app.models import Test
 
 @admin.register(Test)
 class TestAdmin(admin.ModelAdmin):
-    # Кнопка сохранить еще и сверху
-    save_on_top = True
+    # Общая страница со всеми тестами - - - - -
 
     # Подписи в шапке
     list_display = [
@@ -17,6 +17,7 @@ class TestAdmin(admin.ModelAdmin):
         "updated_at",
         "author",
         "is_published",
+        "get_html_cover",
     ]
 
     # сверху строка навигации по датам
@@ -29,6 +30,7 @@ class TestAdmin(admin.ModelAdmin):
         "category",
         "updated_at",
         "author",
+        "get_html_cover",
     ]
 
     # По каким полям можно осущ-ять поиск (только CharField или TextField)
@@ -57,12 +59,12 @@ class TestAdmin(admin.ModelAdmin):
     # Пагинация
     list_per_page = 30
 
-    # Отображение в теле карточки
-    readonly_fields = ["created_at", "updated_at", "id"]
+    # Страница теста содержимое - - - - - - -
+    # Кнопка сохранить еще и сверху
+    save_on_top = True
 
-    # добавил, что бы в карточке теста выводились вопросы
-    # как сделать еще картинки прикрепленные к вопросам???
-    inlines = (QuestionInline,)
+    # Отображение в теле карточки
+    readonly_fields = ["created_at", "updated_at", "id", "get_html_cover"]
 
     # Блоки в админке
     fieldsets = [
@@ -77,6 +79,7 @@ class TestAdmin(admin.ModelAdmin):
                     "title",
                     "description",
                     "cover",
+                    "get_html_cover",
                     "is_published",
                 ]
             },
@@ -91,6 +94,19 @@ class TestAdmin(admin.ModelAdmin):
             },
         ),
     ]
+
+    # добавил, что бы в карточке теста выводились вопросы
+    # как сделать еще картинки прикрепленные к вопросам???
+    inlines = (QuestionInline,)
+
+    # Отображение картинки теста (Превью)
+    def get_html_cover(self, obj):
+        if obj.cover:
+            return mark_safe(f'<img src="{obj.cover.url}" height=50 width=50 >')
+        return " - "
+
+    # Подпись в шапке 'Аватар' (не get_html_image )
+    get_html_cover.short_description = "Превью"
 
 
 # В разделе "Пользователь" вывожу его "Тесты" (StackedInline-в строку)
