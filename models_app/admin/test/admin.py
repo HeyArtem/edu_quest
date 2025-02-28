@@ -18,6 +18,7 @@ class TestAdmin(admin.ModelAdmin):
         "author",
         "is_published",
         "get_html_cover",
+        "slug",
     ]
 
     # сверху строка навигации по датам
@@ -70,7 +71,14 @@ class TestAdmin(admin.ModelAdmin):
     fieldsets = [
         (
             "Общая информация",
-            {"fields": ["category", "id", "author", "slug"]},
+            # {"fields": ["category", "id", "author", "slug"]},
+            {
+                "fields": [
+                    "category",
+                    "id",
+                    "author",
+                ]
+            },
         ),
         (
             "Информация о тесте",

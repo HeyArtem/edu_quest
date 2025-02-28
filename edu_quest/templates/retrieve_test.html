@@ -1,0 +1,65 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block style %}
+    <link rel="stylesheet" href="{% static 'css/retrieve_test.css' %}">
+{% endblock %}
+
+{% block content %}
+    <div class="container">
+        <div class="container-header">
+            <div class="header-title-name"><h1>Название: {{test.title}}</h1></div>
+            <div class="header-category"><h1>{{test.category}}</h1></div>
+        </div>
+        <div class="container-body">
+            <div class="contents">
+                <div class="descriptions">
+                    {{test.description}}
+                </div>
+                <div class="number-questions">
+                    <div class="number-questions-title">
+                        <h1>Bопросов в тесте: </h1>
+                    </div>
+                    <div class="number-questions-amount">
+                        <h1>{{ question_count }}</h1>
+                    </div>
+                </div>
+                <div class="updated-at">
+                    <div class="updated-at-title">
+                        <h1>Дата последнего обновления:</h1>
+                    </div>
+                    <div class="updated-at-date">
+                        <h1>{{ test.updated_at|date:"Y-m-d" }}</h1>
+                    </div>
+                </div>
+                <div class="author">
+                    <div class="author-descriptions">
+                        <div class="author-title">
+                            Автор:
+                        </div>
+                        <div class="author-initials">
+                            {{test.author}}
+                        </div>
+                    </div>
+                    <div class="ava">
+                        {% if test.author.avatar %}
+                            <img src="{{ test.author.avatar.url }}" alt="Аватар автора">
+                        {% else %}
+                            <img src="{% static 'img/plug.png' %}" alt="Заглушка аватара">
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+            <div class="picture">
+                {% if test.cover %}
+                    <img src="{{ test.cover.url }}" alt="Картинка теста">
+                {% else %}
+                    <img src="{% static 'img/plug.png' %}" alt="Заглушка">
+                {% endif %}
+            </div>
+        </div>
+        <div class="button-start">
+            <button type="submit">Начать тестирование</button>
+        </div>
+    </div>
+{% endblock %}

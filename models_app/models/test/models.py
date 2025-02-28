@@ -1,4 +1,8 @@
+import random
+import string
+
 from django.db import models
+from django.utils.text import slugify
 
 
 class Test(models.Model):
@@ -28,6 +32,34 @@ class Test(models.Model):
         blank=False,  # Разрешает при сохранении проекта
         verbose_name="Обложка",
     )
+
+    def generate_unique_slug(self):
+        """
+        Генерирует уникальный slug:
+        сначала пытается без суффикса,
+        если уже есть — добавляет случайный суффикс.
+        """
+        base_slug = slugify(self.title)[:50]  # Ограничиваем длину до 50 символов
+        slug = base_slug
+        counter = 1
+
+        while Test.objects.filter(slug=slug).exists():
+            suffix = "".join(
+                random.choices(string.ascii_lowercase + string.digits, k=6)
+            )
+            slug = f"{base_slug}-{suffix}"
+            counter += 1
+            # Если за 10 циклов не получилось создать новый slug-break
+            if counter > 10:
+                break
+        return slug
+
+        # Сохранение slug (с предварительной проверкой уникальности)
+
+    def save(self, *args, **kwargs):
+        if not self.slug:
+            self.slug = self.generate_unique_slug()
+        super().save(*args, **kwargs)
 
     def __str__(self):
         return self.title

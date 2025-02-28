@@ -69,6 +69,7 @@ class UserAdmin(admin.ModelAdmin):
         "date_joined",
         "last_login",
         "get_html_avatar",  # (работает вкупе с readonly_fields)
+        "avatar",
         "is_superuser",
         "groups",
         "user_permissions",

@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block style %}
+    <link rel="stylesheet" href="{% static 'css/question.css' %}">
+{% endblock %}
+
+{% block content %}
+    <div class="container">
+        <div class="container-header">
+            <div class="header-title-name"><h1>Название: {{coca_cola.test}}</h1></div>
+            <div class="header-category"><h1>{{test_category}}</h1></div>
+        </div>
+        <div class="container-body">
+            <div class="contents">
+                <div class="question">
+                    НУЖЕН НОМЕР?. {{coca_cola.text}}
+                </div>
+                <div class="ansewers">
+                    <p>variants ansewers</p>
+                </div>
+                <div class="number-questions">1 from 20 СДЕЛАТЬ!</div>
+            </div>
+            <div class="picture">
+                {% if coca_cola.image %}
+                    <img src="{{ coca_cola.image.url }}" alt="Картинка вопроса">
+                {% else %}
+                    <img src="{% static 'img/plug.png' %}" alt="Заглушка">
+                {% endif %}
+            </div>
+        </div>
+        <div class="button-start">
+            <button type="submit">Ответить</button>
+        </div>
+    </div>
+<div class="session">
+    <p>Вы посетили эту страницу {{ MY_VARIABLE }} раз(а).</p>
+    <h1>{{ TEST_variable_s }}</h1>
+</div>
+{% endblock %}

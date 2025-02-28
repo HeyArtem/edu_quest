@@ -1,6 +1,8 @@
 from django.urls import path
 
 from edu_quest.views.home import HomePageView
+from edu_quest.views.question import RetrieveQuestionView
+from edu_quest.views.test import RetrieveTestView
 from edu_quest.views.tests_by_category import ListTestCategoryView
 from edu_quest.views.user import (LoginUserView, LogoutUserView,
                                   RegisterUserView)
@@ -16,5 +18,11 @@ urlpatterns = [
         "categories/<int:id>/",
         ListTestCategoryView.as_view(),
         name="tests_by_category",
+    ),
+    path("tests/<slug:slug>/", RetrieveTestView.as_view(), name="retrieve_test"),
+    path(
+        "questions/<int:pk>/",
+        RetrieveQuestionView.as_view(),
+        name="retrieve_question",
     ),
 ]
