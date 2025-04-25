@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block style %}
+    <link rel="stylesheet" href="{% static 'css/retrieve_test.css' %}">
+{% endblock %}
+
+{% block content %}
+ <h1>user_result_summary </h1>
+{% for group, results in grouped_results.items %}
+    <h2>{{ group }}</h2>
+    <ul>
+        {% for result in results %}
+            <li>
+                <strong>{{ result.title }}</strong>
+                <br>
+                Количество вопросов: {{ result.num_questions }}
+                Прогресс: {{ result.progress }}
+                Дата прохождения: {{ result.date }}
+                Картинка: <img src="{{ result.cover.url }}" alt="">
+            </li>
+        {% endfor %}
+        <hr>
+    </ul>
+{% endfor %}
+
+
+
+
+
+
+
+{% endblock %}

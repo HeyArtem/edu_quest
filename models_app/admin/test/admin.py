@@ -65,7 +65,12 @@ class TestAdmin(admin.ModelAdmin):
     save_on_top = True
 
     # Отображение в теле карточки
-    readonly_fields = ["created_at", "updated_at", "id", "get_html_cover"]
+    readonly_fields = [
+        "created_at",
+        "updated_at",
+        "id",
+        "get_html_cover",
+    ]
 
     # Блоки в админке
     fieldsets = [
@@ -77,6 +82,7 @@ class TestAdmin(admin.ModelAdmin):
                     "category",
                     "id",
                     "author",
+                    "slug",
                 ]
             },
         ),

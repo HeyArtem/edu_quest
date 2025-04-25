@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<br>
+Тест: {{ user_result.test }}
+<br>
+Ответы:
+{% for answer in user_result.answers.all %}
+	{{ answer }}
+    <hr>
+{% endfor %}
+<br>
+<table border="1">
+    <thead>
+        <tr>
+            <th>Ключ</th>
+            <th>Значение</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for key, value in request.session.items %}
+            <tr>
+                <td>{{ key }}</td>
+                <td>{{ value }}</td>
+            </tr>
+        {% empty %}
+            <tr>
+                <td colspan="2">Сессия пуста</td>
+            </tr>
+        {% endfor %}
+    </tbody>
+</table>
+<a href="http://127.0.0.1:8000/">Домой</a>
+</body>
+</html>

@@ -54,12 +54,12 @@
                 {% if test.cover %}
                     <img src="{{ test.cover.url }}" alt="Картинка теста">
                 {% else %}
-                    <img src="{% static 'img/plug.png' %}" alt="Заглушка">
+                    <img src="{% static 'img/plus.png' %}" alt="Заглушка">
                 {% endif %}
             </div>
         </div>
         <div class="button-start">
-            <button type="submit">Начать тестирование</button>
+            <a href="{% url 'next_question' %}?test_slug={{ test.slug }}" class="full-button-start" >Начать тестирование</a>
         </div>
     </div>
 {% endblock %}

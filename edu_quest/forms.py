@@ -44,7 +44,6 @@ class LoginUserForm(AuthenticationForm):
     Авторизация пользователя
     """
 
-    print("[!]  LoginUserForm from forms.py")
     username = forms.CharField(
         label="Логин",
         max_length=255,

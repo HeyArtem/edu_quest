@@ -76,20 +76,29 @@
     font-weight: bold;
     margin-top: 24px;
     margin-left: 33px;
-
 }
 
-.ansewers {
+.answers {
     font-size: 20px;
     font-family: 'Inter';
-
-    margin-top: 38px;
-    margin-left: 65px;
-
+    font-weight: bold;
+    background-color: #FFFFFF;
+    margin-top: 44px;
+    margin-left: 34px;
 }
 
-.number-questions {
 
+
+
+.number-questions {
+    margin-top: auto;
+    margin-bottom: 10px;
+    margin-left: 478px;
+    display: flex;
+    align-items: center;
+    font-weight: bold;
+    font-size: 20px;
+    font-family: 'Inter';
 }
 
 /* Блок с картинкой вопроса */
@@ -105,23 +114,74 @@
     border-radius: 20px;
 }
 
-.button-start {
+
+
+
+
+
+.full_answer_button {
+    display: flex; /* Чтобы текст центрировался */
+    justify-content: center;
+    align-items: center;
+    width: 100%; /* Растягиваем на всю кнопку */
+    height: 100%;
+    color: white;
+    font-size: 22px;
+    font-family: 'Inter';
+    font-weight: bold;
+    border: none; /* Убираем границу */
+    cursor: pointer;
+    margin-top: 24px; /* Отступ сверху для эстетики */
+    background-color: #A379C9;
+    border-radius: 50px;
     width: 1125px;
     height: 55px;
-    border-radius: 50px;
-    background-color: #A379C9;
-    margin-top: 24px; /* Отступ сверху для эстетики */
-    display: flex; /* Добавляем flexbox для центрирования содержимого */
-    justify-content: center; /* Центрируем по горизонтали */
-    align-items: center; /* Центрируем по вертикали */
 }
 
-button {
-    background-color: transparent; /* Убираем фон */
-    border: none; /* Убираем границу */
-    color: white; /* Устанавливаем белый цвет текста */
-    font-size: 22px; /* Настройте размер шрифта по желанию */
-    .font-family: 'Inter';
+/* Эффект при наведении */
+.full_answer_button:hover {
+    color: #56C7B2; /* Изменение цвета текста при наведении */
+}
+
+
+
+/* Кнопка выхода из теста */
+.stop_test {
+    align-self: flex-start; /* Сдвигает блок влево */
+    margin-top: 40px;
+}
+
+.stop_sign {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 120px;
+    height: 120px;
+    background: #FF0000;
+    color: white;
+    font-size: 24px;
     font-weight: bold;
-    cursor: pointer; /* Указатель при наведении на кнопку */
+    text-decoration: none;
+    text-transform: uppercase;
+    align-self: flex-start; /* Прижимает к левому краю */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    transition: transform 0.2s ease;
+    position: relative; /* Важно для корректного позиционирования ::before */
+    clip-path: polygon(25% 0%, 75% 0%, 100% 25%, 100% 75%, 75% 100%, 25% 100%, 0% 75%, 0% 25%);
+}
+
+/* Эффект при наведении */
+.stop_sign:hover {
+    transform: scale(1.1);
+}
+
+/* Делаем восьмиугольник (похожий на знак STOP) */
+.stop_sign::before {
+    content: "";
+    position: absolute;
+    width: 100px;
+    height: 100px;
+    clip-path: polygon(25% 0%, 75% 0%, 100% 25%, 100% 75%, 75% 100%, 25% 100%, 0% 75%, 0% 25%);
+    background: #FF0000;
+    z-index: -1;
 }

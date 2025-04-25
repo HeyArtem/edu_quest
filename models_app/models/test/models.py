@@ -14,7 +14,7 @@ class Test(models.Model):
         related_query_name="test",
         verbose_name="Категория",
     )
-    description = models.TextField(verbose_name="Описание")
+    description = models.CharField(max_length=250, verbose_name="Описание")
     created_at = models.DateTimeField(auto_now_add=True, verbose_name="Дата создания")
     updated_at = models.DateTimeField(auto_now=True, verbose_name="Дата обновления")
     author = models.ForeignKey(

@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<h1>lerning_ORM</h1>
+<hr>
+<ol>
+    <li>
+        <h3>Вывести первые 5 тестов в бд. Отсортировать по заголовку (в алфавитном порядке)</h3>
+        {% for test in test_res_1 %}
+        <p>{{ test.title }}</p>
+        {% endfor %}
+    </li>
+    <li>
+        <h3>
+            Достать один любой тест из БД. Вывести список всех его вопросов (Только текст).
+            Обращаться к таблице Question - нельзя
+        </h3>
+        {% for question in questions_2 %}
+        <p>{{ question.text }}</p>
+        {% endfor %}
+    </li>
+    <li>
+        <h3>Вывести все правильные ответы от любого теста в БД</h3>
+        {% for answer in answers_3 %}
+        <p>{{ answer.text }}</p>
+        {% endfor %}
+    </li>
+    <li>
+        <h3>Вывести все не опубликованные тесты из БД</h3>
+        {% for test in not_published_tests_4 %}
+        <p>{{ test.title }}</p>
+        {% endfor %}
+    </li>
+    <li>
+        <h3>Вывести тесты, у которых id есть в списке [1, 24, 14, 27]</h3>
+        {% for test in list_tests_5 %}
+        <p>{{ test.title }}</p>
+        {% endfor %}
+
+    </li>
+    <li>
+        Я здесь!
+        <h3>Вывести все результаты тестов текущего пользователя. Обращаться к таблице UserResult - нельзя</h3>
+            {% for result in resault_user_6 %}
+                <p>{{ result.user }} - {{ result.test }} - {{ result.answers.all }}</p>
+            {% endfor %}
+
+    </li>
+    <li>
+        <h3>
+            Вывести все результаты тестов текущего пользователя и отфильтровать их по текущей дате.
+            Обращаться к таблице UserResult - нельзя
+        </h3>
+        {% for result in resault_user_7 %}
+                <p>{{ result.user }} - {{ result.test }} - {{ result.date }}</p>
+            {% endfor %}
+
+
+    </li>
+
+    <li>
+        <h3>
+            Вывести тесты, у которых название начина-ся на м
+        </h3>
+        {% for test in list_tests_8 %}
+        <p>{{ test.title }}</p>
+        {% endfor %}
+
+    </li>
+
+    <li>
+        <h3>
+            Вывести тесты, у которых название начина-ся на м или т
+        </h3>
+        {% for test in res_tests_m_t_9 %}
+            <p>{{test.title}}</p>
+        {% endfor %}
+
+    </li>
+</ol>
+</body>
+</html>

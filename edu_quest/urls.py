@@ -1,11 +1,15 @@
 from django.urls import path
 
 from edu_quest.views.home import HomePageView
-from edu_quest.views.question import RetrieveQuestionView
+from edu_quest.views.lerning_ORM import lerning_orm
+from edu_quest.views.lerning_ORM_ai import lerning_ORM_ai
+from edu_quest.views.question import question_view
+# from edu_quest.views.question import RetrieveQuestionView
 from edu_quest.views.test import RetrieveTestView
 from edu_quest.views.tests_by_category import ListTestCategoryView
 from edu_quest.views.user import (LoginUserView, LogoutUserView,
                                   RegisterUserView)
+from edu_quest.views.user_result_summary import UserResultSummaryView
 
 # Принцип названия View.
 # ActionModelView (Дейсивие Модель View)
@@ -20,9 +24,10 @@ urlpatterns = [
         name="tests_by_category",
     ),
     path("tests/<slug:slug>/", RetrieveTestView.as_view(), name="retrieve_test"),
+    path("questions/next/", question_view, name="next_question"),
     path(
-        "questions/<int:pk>/",
-        RetrieveQuestionView.as_view(),
-        name="retrieve_question",
+        "user_result_summary/", UserResultSummaryView.as_view(), name="user_result_view"
     ),
+    path("lerning_orm/", lerning_orm, name="lerning_orm"),
+    path("lerning_ORM_ai/", lerning_ORM_ai, name="lerning_ORM_ai"),
 ]

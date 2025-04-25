@@ -2,39 +2,78 @@
 {% load static %}
 
 {% block style %}
-    <link rel="stylesheet" href="{% static 'css/question.css' %}">
+<link rel="stylesheet" href="{% static 'css/question.css' %}">
 {% endblock %}
 
 {% block content %}
-    <div class="container">
-        <div class="container-header">
-            <div class="header-title-name"><h1>Название: {{coca_cola.test}}</h1></div>
-            <div class="header-category"><h1>{{test_category}}</h1></div>
-        </div>
-        <div class="container-body">
-            <div class="contents">
-                <div class="question">
-                    НУЖЕН НОМЕР?. {{coca_cola.text}}
-                </div>
-                <div class="ansewers">
-                    <p>variants ansewers</p>
-                </div>
-                <div class="number-questions">1 from 20 СДЕЛАТЬ!</div>
+<div class="container">
+    <div class="container-header">
+        <div class="header-title-name"><h2>Название: {{ question.test }}</h2></div>
+        <div class="header-category"><h3>{{category}}</h3></div>
+    </div>
+    <div class="container-body">
+        <div class="contents">
+            <div class="question">
+                {{ question }}
             </div>
-            <div class="picture">
-                {% if coca_cola.image %}
-                    <img src="{{ coca_cola.image.url }}" alt="Картинка вопроса">
-                {% else %}
-                    <img src="{% static 'img/plug.png' %}" alt="Заглушка">
-                {% endif %}
+
+            <form id="answerForm" action="{% url 'next_question' %}?test_slug={{ test_slug }}" method="post">
+                {% csrf_token %}
+                <div class="answers">
+                    {% for answer in answers %}
+                        <div class="answer">
+                            <label for="answer_{{ answer.id }}">
+                                <input id="answer_{{ answer.id }}"  type="radio" name="answer_id" value="{{ answer.id }}" onchange="showButton()">
+                                {{ forloop.counter }}. {{answer.text}}
+                            </label>
+                        </div>
+                    {% endfor %}
+                </div>
+            </form>
+
+
+             <!-- Счётчик вопросов -->
+            <div class="number-questions">
+                <h1>{{ current_question_number }} / {{ total_questions }}</h1>
             </div>
         </div>
-        <div class="button-start">
-            <button type="submit">Ответить</button>
+        <!-- Картинка -->
+        <div class="picture">
+            {% if question.image %}
+            <img src="{{ question.image.url }}" alt="Картинка вопроса">
+            {% else %}
+            <img src="{% static 'img/plug.png' %}" alt="Заглушка">
+            {% endif %}
         </div>
     </div>
-<div class="session">
-    <p>Вы посетили эту страницу {{ MY_VARIABLE }} раз(а).</p>
-    <h1>{{ TEST_variable_s }}</h1>
+
+    <!-- Кнопка вне формы -->
+    <div class="answer_button">
+        <button id="submitButton" style="display: none;" onclick="submitForm()" class="full_answer_button">Ответить</button>
+    </div>
+
+    <!-- Кнопка завершения теста -->
+    <div class="stop_test">
+        <a href="{% url 'home' %}" class="stop_sign" >Stop!!</a>
+    </div>
 </div>
+
+
+
+
+
+<script>
+    // Показываем кнопку при выборе ответа
+    function showButton() {
+        document.getElementById('submitButton').style.display = 'flex';
+    }
+
+    // Сабмитим форму при нажатии на кнопку
+    function submitForm() {
+        document.getElementById('answerForm').submit();
+    }
+</script>
+
+
+
 {% endblock %}

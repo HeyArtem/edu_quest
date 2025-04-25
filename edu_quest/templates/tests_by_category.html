@@ -27,6 +27,7 @@
 
             <!--Карточка теста-->
             <div class="card-test">
+              <a href="{% url 'retrieve_test' test.slug %}" class="jump-button-button">
               <div class="date-author">
                 <div class="date-test">
                   <h1>{{ test.updated_at|date:"Y-m-d"  }}</h1>
@@ -35,10 +36,10 @@
                   <h1>{{ test.author }}</h1>
                 </div>
               </div>
-
               <div class="title-test">
                 <h1>{{ test.title }}</h1>
               </div>
+              </a>
             </div>
 
             <!-- проверяет, делится ли текущий номер карточки на 3-->

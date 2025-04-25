@@ -48,13 +48,31 @@
     padding-left: 20px; /* Внутренний отступ слева на 20 пикселей */
 }
 
+
+/* Нейтральное поведение для ссылки */
+.jump-button-button:hover {
+    background-color: transparent;
+    color: inherit;
+    text-decoration: none;
+    cursor: default;
+}
+
+.jump-button-button {
+    text-decoration: none;
+    color: inherit;
+}
+
 /* блок с датой и автором */
 .date-author {
+    font-size: 14px;
+    font-family: 'Inter';
     width: 315px;
     height: 31px;
     margin-top: 20px;
-    flex-wrap: wrap;  /* Разрешаем перенос элементов на новую строку */
+    display: flex;          /* Включаем flex-контейнер */
+    align-items: center;    /* Выравниваем по центру по вертикали */
     justify-content: space-between; /* Распределение карточек по горизонтали с отступами */
+    padding: 0 10px;                /* Отступы слева и справа */
 }
 
 .title-test {
@@ -63,4 +81,12 @@
     border-radius: 25px;
     background-color: #A379C9;
 
+}
+
+.title-test h1 {
+    margin-left: 20px;
+    padding-top: 12px; /* Сдвиг вниз только содержимого */
+    font-size: 22px;
+    font-family: 'Inter';
+    font-weight: bold;
 }

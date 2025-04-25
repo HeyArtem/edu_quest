@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h2>Изучаю ORM с AI</h2>
+<h3>🔹 ШАГ 1: Простые запросы без связей</h3>
+    {% for test in tests %}
+        <p>{{ test.title }}-{{ test.category }}</p>
+    {% endfor %}
+
+    {% for res in user_res_1 %}
+        <p>{{ res.test }}-{{ res.user }}-{{ res.answers }}</p>
+    {% endfor %}
+<hr>
+
+<h3>🔹 ШАГ 2: Простая фильтрация</h3>
+{% for test in tests_2 %}
+        <p>{{ test.title }}-{{ test.category }}</p>
+{% endfor %}
+<hr>
+
+<h3>🔹 ШАГ 3: Проход по ForeignKey — __ (двойное подчёркивание)</h3>
+{% for test in tests_us1_3 %}
+        <p>{{ test.title }}-{{ test.category }}</p>
+{% endfor %}
+<br>
+<h4>Пример 2: Найти все тесты, у которых автор зовут admin:</h4>
+{% for test in tests_us_name_3 %}
+        <p>{{ test.title }}-{{ test.category }}</p>
+{% endfor %}
+
+<br>
+<h4>Пример 3: Найти все тесты, у которых категория называется "Математика":</h4>
+{% for test in tests_cat_math_3 %}
+        <p>{{ test.category }} - {{ test.title }}</p>
+{% endfor %}
+<hr>
+
+<h3>🔹 ШАГ 4: Обратные связи (related_name)</h3>
+<h4>🔸 Пример 4: Получить все тесты пользователя user:</h4>
+
+{% for test in tests_us_4 %}
+        <p>{{ test.category }} - {{ test.title }}-{{ test.author }}</p>
+{% endfor %}
+<br>
+
+<h4>🔸 Пример 5: Получить все вопросы теста:</h4>
+
+{% for question in quest_test_4 %}
+        <p>{{ question.text }} - {{ question.test }}</p>
+{% endfor %}
+<br>
+<hr>
+
+<h3>🔹 ШАГ 5: Проход на 2 уровня и более</h3>
+<h4>🔸 Пример 6: Найти все вопросы, у которых тест в категории "Математика"</h4>
+{% for question in quest_cat_math_5 %}
+        <p>{{ question.text }} - {{ question.test }}</p>
+{% endfor %}
+<br>
+
+<h4>🔸 Пример 7: Найти все ответы, которые принадлежат вопросам из теста "Russian poetry"</h4>
+{% for answer in answer_test_5 %}
+        <p>{{ answer.text }}- {{ answer.is_correct }} - {{ answer.question }}</p>
+{% endfor %}
+<br>
+
+<h4>🔸 Самостоятельная работа Пример 8: Получить всех пользователей, которые проходили тест с названием "just mathematics".</h4>
+<h5>Длинный вариант, наверное есть короче</h5>
+    {% for user in all_authors_long_5 %}
+        <p>{{ user }}</p>
+    {% endfor %}
+<br>
+<h5>Через запрос</h5>
+    {% for user in users_just_math_5 %}
+        <p>{{ user}}</p>
+    {% endfor %}
+<hr>
+
+
+<h4> 🔸 Самостоятельная работа Пример 9: Получить все тесты, в которых есть хотя бы один вопрос, содержащий слово "вопр".</h4>
+    {% for test in questions_5 %}
+        <p>{{ test.title }}- {{ test.id }}</p>
+    {% endfor %}
+<br>
+
+
+
+</body>
+</html>
