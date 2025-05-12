@@ -14,6 +14,9 @@ DEBUG = env("DEBUG", cast=bool)
 
 ALLOWED_HOSTS = env("ALLOWED_HOSTS", default=["*"])
 
+INTERNAL_IPS = [
+    "127.0.0.1"
+]  # Чтобы debug_toolbar показывался только на локалке (в проде он будет скрыт).
 
 INSTALLED_APPS = [
     "django.contrib.admin",
@@ -26,12 +29,14 @@ INSTALLED_APPS = [
     "edu_quest",
     "api",
     "models_app",
+    "debug_toolbar",
 ]
 
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
     "django.middleware.common.CommonMiddleware",
+    "debug_toolbar.middleware.DebugToolbarMiddleware",  # debug_toolbar
     "django.middleware.csrf.CsrfViewMiddleware",
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",

@@ -18,9 +18,10 @@ class Favorite(models.Model):
     )
 
     def __str__(self):
-        return f"{self.test_id} - {self.user_id}"
+        return f"{self.test_id} - {self.user_id} - {self.user.username} ❤️ {self.test.title}"
 
     class Meta:
         db_table = "favorites"
         verbose_name = "Избранное"
         verbose_name_plural = "Избранные"
+        unique_together = ("user", "test")  # чтобы не было дубликатов

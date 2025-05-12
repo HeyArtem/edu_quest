@@ -41,10 +41,8 @@ def question_view(request):
             ):
                 user_result = UserResult.objects.create(user=user, test=test_db)
                 user_result.answers.set(request.session[f"{user_session_key}_answers"])
-                print("[!] Результат записан")
-                return redirect(
-                    reverse("user_result_view", kwargs={"pk": user_result.pk})
-                )
+                print("[!] Результат записан", user_result.pk)
+                return redirect(reverse("user_result", kwargs={"pk": user_result.pk}))
 
             request.session[f"{user_session_key}_answers"] = []
 

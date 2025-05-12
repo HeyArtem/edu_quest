@@ -11,11 +11,13 @@ repos:
     rev: 23.9.1
     hooks:
       - id: black
+        require_serial: true
 
   - repo: https://github.com/pre-commit/mirrors-isort
     rev: v5.10.1
     hooks:
       - id: isort
+        args: [ "--profile", "black" ]
 
   - repo: https://github.com/PyCQA/flake8
     rev: 6.1.0
@@ -39,15 +41,21 @@ repos:
 
 #trailing-whitespace
 #  проверки конечных пробелов
+
 #end-of-file-fixer
 #  Следит за тем, чтобы файлы заканчивались новой строкой и только новой строкой.
+
 #check-yaml
 #  Пытается загрузить все файлы YAML для проверки синтаксиса.
+
 #check-json
 #  Пытается загрузить все файлы JSON для проверки синтаксиса.
+
 #black
 #  единый стиль кода, форматирование, единообразие
+
 #isort
 #  для сортировки импорта в алфавитном порядке и автоматического разделения на разделы и по типу.
+
 #pyupgrade
 #  для автоматического обновления синтаксиса для новых версий языка.
