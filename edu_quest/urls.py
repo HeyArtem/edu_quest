@@ -33,7 +33,7 @@ urlpatterns = [
     path(
         "favorite/<int:test_id>/toggle/", toggle_favorite_ajax, name="toggle_favorite"
     ),
-    path("user_result_test/<int:test_id>/", user_result_test, name="user_result"),
+    path("user_result_test/<int:pk>/", user_result_test, name="user_result"),
     path("lerning_orm/", lerning_orm, name="lerning_orm"),
     path("lerning_ORM_ai/", lerning_ORM_ai, name="lerning_ORM_ai"),
 ]

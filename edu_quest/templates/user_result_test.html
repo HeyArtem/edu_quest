@@ -11,43 +11,41 @@
     <div class="specific_user_result">
         <h1>Результаты прохождения теста</h1>
 
-        <p>Тест: {{ specific_user_result.test.title }}</p>
-        <p>Категория: {{ specific_user_result.test.category }}</p>
-        <p>Дата прохождения: {{ specific_user_result.date }}</p>
-        <p>Кто проходил: {{ specific_user_result.user.username }}</p>
-        <p>Описание теста: {{ specific_user_result.test.description}} </p><br><br>
+        <p>Тест: {{ user_result.test.title }}</p>
+        <p>Категория: {{ user_result.test.category }}</p>
+        <p>Дата прохождения: {{ user_result.date }}</p>
+        <p>Кто проходил: {{ user_result.user.username }}</p>
+        <p>Описание теста: {{ user_result.test.description}} </p><br><br>
 
 
         <h2>Подробности </h2>
-        <!-- Прощел в таблицу Ответов. Через res я могу получить любое поле в Answers -->
-        {% for res in specific_user_result.answers.all %}
+        <!-- Прощел в таблицу Ответов. Через user_answerя могу получить любое поле в Answers -->
+        {% for user_answer in user_result.answers.all %}
 
-{% comment %}
-        specific_user_result — объект UserResult.
-        specific_user_result.answers.all — это все ответы, которые пользователь дал при прохождении теста
+    {% comment %}
+        user_result — объект UserResult.
+        user_result.answers.all — это все ответы, которые пользователь дал при прохождении теста
 
-        res-это я в Answer
-        res в цикле — один объект Answer
+        user_answerв цикле — один объект Answer
+            user_answer.question.text -Answer(поле question)->Question text(вопроса)
+            user_answer.question.image -Answer(поле question)->Question image(картинка вопроса)
 
-     res.question.text -Answer(поле question)->Question text(вопроса)
-     res.question.image -Answer(поле question)->Question image(картинка вопроса)
+            user_answer.question.test.title -Answer(поле question)->Question(поле test)->Test(поле title теста)
+            user_answer.question.test.description -Answer(поле question)->Question(поле test)->Test(поле description теста)
+            user_answer.question.test.updated_at -Answer(поле question)->Question(поле test)->Test(поле updated_at теста)
 
-     res.question.test.title -Answer(поле question)->Question(поле test)->Test(поле title теста)
-     res.question.test.description -Answer(поле question)->Question(поле test)->Test(поле description теста)
-     res.question.test.updated_at -Answer(поле question)->Question(поле test)->Test(поле updated_at теста)
+        user_answer.question.answers.all -Answer(поле question)->Question->related_name="answers"(все объекты Answer)
+        answer_question в цикле — один объект Answer ( answer_question.text-один ответ, answer_question.is_correct-булевое значение ответа)
+    {% endcomment %}
 
-    res.question.answers.all -Answer(поле question)->Question->related_name="answers"(все объекты Answer)
-    option в цикле — один объект Answer ( option.text-один ответ, option.is_correct-булевое значение ответа)
-{% endcomment %}
-
-            <h3>🔹Вопрос: {{ res.question.text}}-✔</h3>
-                <img src="{{ res.question.image.url }}" height="35" alt="картинка вопроса"><br><br><br>
+            <h3>🔹Вопрос: {{ user_answer.question.text}}-✔</h3>
+                <img src="{{ user_answer.question.image.url }}" height="35" alt="картинка вопроса"><br><br><br>
             <h2>Варианы ответов:</h2>
                 <!-- Answer(поле question)->Question->related_name="answers"(все объекты Answer) -->
-                {% for option in res.question.answers.all %}
+                {% for answer_question in user_answer.question.answers.all %}
                     <li>
-                        {{ option.text }}
-                        {% if option.is_correct %}
+                        {{ answer_question.text }}
+                        {% if answer_question.is_correct %}
                             <span style="color: green;"> — правильный</span>
                         {% endif %}
                     </li>
@@ -58,8 +56,8 @@
 
             <p>🔹Ваш ответ:</p>
                 <p>
-                    {{ res.text }}-
-                    {% if res.is_correct %}
+                    {{ user_answer.text }}-
+                    {% if user_answer.is_correct %}
                         <p style="color: green;">✔ Верно</p>
                     {% else %}
                         <p style="color: red;">✘ НEверно</p>
@@ -72,8 +70,4 @@
         <h2>💠Прогресс: {{ progress }} %</h2>
     </div>
 </div>
-
-
-
-
 {% endblock %}

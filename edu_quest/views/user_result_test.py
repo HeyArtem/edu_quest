@@ -3,65 +3,46 @@ from django.shortcuts import get_object_or_404, render
 from models_app.models.user_result.models import UserResult
 
 
-def user_result_test(request, test_id):
+def user_result_test(request, pk):
     """
     Вывод подробного результата прохождения  конкретного теста
-        -должна принимат id-шник записи из UserResult
-        -должна проволидировать, что id-user & id кто запросил совподают
-        -валидация, что результаты есть в результатах (id=40) ZeroDivisionError: division by zero
     """
 
-    """
-    specific_user_result - по id-в таблице результатов получил
-    один конкретный результат прохождения (Тест, Пользователь, Дата, Ответы)
-    """
-    actual_user = request.user
-    # Получение результатов прохождения + валидация что id текущего user == id user проходившего тест
-    # specific_user_result = get_object_or_404(
-    #     UserResult,
-    #     id=test_id,
-    #     user=actual_user
-    # )
-
-    # `select_related`
-    specific_user_result = get_object_or_404(
-        UserResult.objects.select_related("user"), id=test_id, user=actual_user
+    user_result = get_object_or_404(
+        UserResult.objects.select_related(
+            "user",
+            "test",
+            "test__category",
+        ).prefetch_related(
+            "answers", "answers__question", "answers__question__answers"
+        ),
+        id=pk,
+        user=request.user,
+        # todo Макс если с answers__isnull=False, выходит ошибка
+        #  "MultipleObjectsReturned at /user_result_test/63/ get() returned more than one UserResult -- it returned 4!"
+        #  и много запросов
+        # answers__isnull=False,
     )
 
-    if actual_user == specific_user_result.user:
-        """
-        Что бы подсчитать прогресс в % нужно
-            -Количество вопросов
-            -Количество правильных ответов
-            -(Количество правильных ответов / Число вопросов) * 100
-        """
-        # Прогресс в %
-        correct_answers = (
-            specific_user_result.answers.all().filter(is_correct=True).count()
-        )
-        total_questions = (
-            specific_user_result.answers.all().count()
-        )  # Общее количечество ответов (вопросов)
+    answers = user_result.answers.all()
 
-        if total_questions == 0:
-            context = {
+    if not answers:
+        return render(
+            request,
+            "plug.html",
+            {
                 "info": "Нет результатов прохождения!",
-            }
-            return render(request, "plug.html", context)
-        if total_questions > 0:
-            progress = round((correct_answers / total_questions) * 100)
-        else:
-            progress = "Нет данных"
+            },
+        )
 
-        context = {
-            "progress": progress,
-            "specific_user_result": specific_user_result,
-        }
-        return render(request, "user_result_test.html", context)
+    correct_answers = answers.filter(is_correct=True).count()
+    total_answers = answers.count()
 
-    else:
-        # Если запрашиваемый результат принадлежит др пользователю
-        context = {
-            "info": "За вами не числиться такой результат!",
-        }
-        return render(request, "plug.html", context)
+    return render(
+        request,
+        "user_result_test.html",
+        {
+            "progress": round((correct_answers / total_answers) * 100),
+            "user_result": user_result,
+        },
+    )
