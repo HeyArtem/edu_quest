@@ -1,3 +1,4 @@
+import nested_admin
 from django.contrib import admin
 from django.utils.safestring import mark_safe
 
@@ -6,7 +7,7 @@ from models_app.models import Test
 
 
 @admin.register(Test)
-class TestAdmin(admin.ModelAdmin):
+class TestAdmin(nested_admin.NestedModelAdmin):
     # Общая страница со всеми тестами - - - - -
 
     # Подписи в шапке
@@ -113,6 +114,8 @@ class TestAdmin(admin.ModelAdmin):
     # как сделать еще картинки прикрепленные к вопросам???
     inlines = (QuestionInline,)
 
+    # prepopulated_fields = {"slug": ("title",)}
+
     # Отображение картинки теста (Превью)
     def get_html_cover(self, obj):
         if obj.cover:
@@ -121,6 +124,12 @@ class TestAdmin(admin.ModelAdmin):
 
     # Подпись в шапке 'Аватар' (не get_html_image )
     get_html_cover.short_description = "Превью"
+
+    def save_model(self, request, obj: Test, form, change: bool):
+        # Если changed_data=False (объект создается) | в changed_data есть 'title' ('title' имеет изменения)
+        if not change or "title" in form.changed_data:
+            obj.slug = Test.generate_unique_slug(form.cleaned_data["title"])
+        super().save_model(request, obj, form, change)
 
 
 # В разделе "Пользователь" вывожу его "Тесты" (StackedInline-в строку)

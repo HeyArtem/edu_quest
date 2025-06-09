@@ -1,3 +1,4 @@
+import nested_admin
 from django.contrib import admin
 
 from models_app.models import Answer
@@ -48,7 +49,9 @@ class AnswerAdmin(admin.ModelAdmin):
 
 
 # Инлайн отображение ответов в админка\вопросы
-class AnswerInline(admin.TabularInline):
+class AnswerInline(nested_admin.NestedStackedInline):
     model = Answer
     # Количество дополнительных пустых ячеек
     extra = 0
+    verbose_name = "➡ Ответ"
+    verbose_name_plural = "➡ Ответы"

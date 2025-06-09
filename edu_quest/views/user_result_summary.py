@@ -27,10 +27,7 @@ class UserResultSummaryView(TemplateView):
             .order_by("-date")
         )
 
-        grouped_results = {
-            "Сегодня": [],
-            "Вчера": [],
-        }
+        grouped_results = {}
 
         for result in user_results:
             # Оставляю только дату (без времени)
@@ -53,12 +50,18 @@ class UserResultSummaryView(TemplateView):
                 "date": result.date.strftime("%d.%m.%Y %H:%M"),
                 "cover": result.test.cover,
                 "test_id": result.test.id,  # добавляем id теста сюда!
+                "results_id": result.id,
             }
+            print("[!] result.id: ", result.id)
 
             # Добавляю в нужную группу
             if group not in grouped_results:
                 grouped_results[group] = []
             grouped_results[group].append(annotated_result)
+
+        # ❗ Удаляем пустые группы (если они вдруг есть)
+        grouped_results = {k: v for k, v in grouped_results.items() if v}
+
         # Достаю ID тестов, которые в избранном:
         favorite_test_ids = Favorite.objects.filter(user=user).values_list(
             "test_id", flat=True

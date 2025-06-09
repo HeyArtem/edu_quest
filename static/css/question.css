@@ -1,0 +1,187 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 1184px;
+    min-height: 100vh; /* Убираем фиксированную высоту */
+    background-color: #ADB9E3;
+    border-radius: 50px 50px 0 0;
+    margin-top: 33px;
+    padding: 20px; /* Увеличиваем padding для удобства */
+    box-sizing: border-box;
+    font-family: 'Inter';
+    text-align: center;
+    color: white;
+}
+
+.container-header {
+    display: flex;
+    justify-content: space-between; /* Распределяет элементы по краям */
+    align-items: center; /* Выравнивает элементы по вертикали */
+    width: 100%; /* Растягиваем на всю ширину */
+    padding: 0 40px; /* Добавляем отступы слева и справа */
+    box-sizing: border-box; /* Учитываем padding в ширине */
+}
+
+.header-title-name {
+    font-size: 30px;
+    font-weight: bold;
+    margin: 0; /* Убираем margin */
+    text-align: left;
+    margin-top: 20px;
+}
+
+.header-category {
+    font-size: 22px;
+    height: 55px;
+    width: 305px;
+    font-weight: bold;
+    border-radius: 50px;
+    background-color: #A379C9;
+    display: flex; /* Включаем Flexbox */
+    justify-content: center; /* Выравниваем текст по горизонтали */
+    align-items: center;
+    margin-top: 20px;
+}
+
+.header-category h1 {
+    margin-top: 10px;
+}
+
+/* Блок с вопросами и вариантами ответов */
+.container-body {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start; /* Выравнивание верхних границ */
+    gap: 20px; /* Отступ между блоками */
+    margin-top: 30px;
+}
+
+.contents {
+    width: 550px;
+    height: 360px;
+    background-color: #FFFFFF;
+    border-radius: 20px;
+    text-align: left;
+    color: black;
+    /* padding: 20px;  Внутренние отступы */
+    box-sizing: border-box; /* Учитываем padding в общую ширину и высоту */
+    display: flex; /* Включаем Flexbox для организации содержимого */
+    flex-direction: column; /* Располагаем элементы вертикально */
+}
+
+.question {
+    font-size: 18px;
+    font-family: 'Inter';
+    font-weight: bold;
+    margin-top: 24px;
+    margin-left: 33px;
+}
+
+.answers {
+    font-size: 20px;
+    font-family: 'Inter';
+    font-weight: bold;
+    background-color: #FFFFFF;
+    margin-top: 44px;
+    margin-left: 34px;
+}
+
+
+
+
+.number-questions {
+    margin-top: auto;
+    margin-bottom: 10px;
+    margin-left: 478px;
+    display: flex;
+    align-items: center;
+    font-weight: bold;
+    font-size: 20px;
+    font-family: 'Inter';
+}
+
+/* Блок с картинкой вопроса */
+.picture {
+    width: 550px; /* Фиксированная ширина */
+    height: 360px;
+}
+
+.picture img {
+    width: 100%;
+    height: 360px;
+    object-fit: cover; /* Изображение будет обрезано под заданные размеры */
+    border-radius: 20px;
+}
+
+
+
+
+
+
+.full_answer_button {
+    display: flex; /* Чтобы текст центрировался */
+    justify-content: center;
+    align-items: center;
+    width: 100%; /* Растягиваем на всю кнопку */
+    height: 100%;
+    color: white;
+    font-size: 22px;
+    font-family: 'Inter';
+    font-weight: bold;
+    border: none; /* Убираем границу */
+    cursor: pointer;
+    margin-top: 24px; /* Отступ сверху для эстетики */
+    background-color: #A379C9;
+    border-radius: 50px;
+    width: 1125px;
+    height: 55px;
+}
+
+/* Эффект при наведении */
+.full_answer_button:hover {
+    color: #56C7B2; /* Изменение цвета текста при наведении */
+}
+
+
+
+/* Кнопка выхода из теста */
+.stop_test {
+    align-self: flex-start; /* Сдвигает блок влево */
+    margin-top: 40px;
+}
+
+.stop_sign {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 120px;
+    height: 120px;
+    background: #FF0000;
+    color: white;
+    font-size: 24px;
+    font-weight: bold;
+    text-decoration: none;
+    text-transform: uppercase;
+    align-self: flex-start; /* Прижимает к левому краю */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    transition: transform 0.2s ease;
+    position: relative; /* Важно для корректного позиционирования ::before */
+    clip-path: polygon(25% 0%, 75% 0%, 100% 25%, 100% 75%, 75% 100%, 25% 100%, 0% 75%, 0% 25%);
+}
+
+/* Эффект при наведении */
+.stop_sign:hover {
+    transform: scale(1.1);
+}
+
+/* Делаем восьмиугольник (похожий на знак STOP) */
+.stop_sign::before {
+    content: "";
+    position: absolute;
+    width: 100px;
+    height: 100px;
+    clip-path: polygon(25% 0%, 75% 0%, 100% 25%, 100% 75%, 75% 100%, 25% 100%, 0% 75%, 0% 25%);
+    background: #FF0000;
+    z-index: -1;
+}

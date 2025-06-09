@@ -1,3 +1,4 @@
+import nested_admin
 from django.contrib import admin
 from django.utils.safestring import mark_safe
 
@@ -75,7 +76,7 @@ class QuestionAdmin(admin.ModelAdmin):
 
 
 # В разделе "Тесты" вывожу для него "Вопросы"
-class QuestionInline(admin.TabularInline):
+class QuestionInline(nested_admin.NestedStackedInline):
     model = Question
     extra = 0
     fields = [
@@ -85,6 +86,9 @@ class QuestionInline(admin.TabularInline):
         "image",
     ]
     readonly_fields = ["get_html_image_question"]  # Запрещаем редактирование preview
+
+    # Вывод вопросов у теста в админке (библиотека nested_admin.)
+    inlines = [AnswerInline]
 
     def get_html_image_question(self, obj):
         if obj.image:

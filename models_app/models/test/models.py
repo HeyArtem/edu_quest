@@ -2,7 +2,7 @@ import random
 import string
 
 from django.db import models
-from django.utils.text import slugify
+from slugify import slugify
 
 
 class Test(models.Model):
@@ -25,7 +25,9 @@ class Test(models.Model):
         verbose_name="Автор",
     )
     is_published = models.BooleanField(default=False, verbose_name="Опубликовано")
-    slug = models.SlugField(max_length=255, unique=True, verbose_name="Слаг")
+    slug = models.SlugField(
+        max_length=255, blank=True, null=False, unique=True, verbose_name="Слаг"
+    )
     cover = models.ImageField(
         upload_to="users/cover/",
         null=False,  # Разрешает на уровне БД
@@ -33,17 +35,18 @@ class Test(models.Model):
         verbose_name="Обложка",
     )
 
-    def generate_unique_slug(self):
+    @classmethod
+    def generate_unique_slug(cls, title: str):
         """
         Генерирует уникальный slug:
         сначала пытается без суффикса,
         если уже есть — добавляет случайный суффикс.
         """
-        base_slug = slugify(self.title)[:50]  # Ограничиваем длину до 50 символов
+        base_slug = slugify(title)[:50]  # Ограничиваем длину до 50 символов
         slug = base_slug
         counter = 1
 
-        while Test.objects.filter(slug=slug).exists():
+        while cls.objects.filter(slug=slug).exists():
             suffix = "".join(
                 random.choices(string.ascii_lowercase + string.digits, k=6)
             )
@@ -53,13 +56,6 @@ class Test(models.Model):
             if counter > 10:
                 break
         return slug
-
-        # Сохранение slug (с предварительной проверкой уникальности)
-
-    def save(self, *args, **kwargs):
-        if not self.slug:
-            self.slug = self.generate_unique_slug()
-        super().save(*args, **kwargs)
 
     def __str__(self):
         return self.title

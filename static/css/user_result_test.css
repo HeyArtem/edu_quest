@@ -1,0 +1,13 @@
+.container {
+    width: 1184px;
+
+    min-height: 140vh;
+    background-color: #ADB9E3;
+    border-radius: 50px 50px 0 0;
+    margin-top: 33px;
+    padding-top: 1px;
+    box-sizing: border-box;
+    font-family: 'Inter';
+    text-align: center;
+    color: white;
+}

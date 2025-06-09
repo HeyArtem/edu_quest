@@ -1,0 +1,174 @@
+/*Обнуление*/
+* {
+    padding: 0;
+    margin: 0;
+    border: 0;
+}
+
+*, *:before, *:after {
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+:focus, :active {
+    outline: none;
+}
+
+a:focus, a:active {
+    outline: none;
+}
+
+nav, footer, header, aside {
+    display: block;
+}
+
+p {
+    margin: 0;
+}
+
+@font-face {
+    font-family: "VinnytsiaReg";
+    font-style: normal;
+    font-weight: 400;
+    src: local("../fonts/VinnytsiaSansReg.ttf"), url("../fonts/VinnytsiaSansReg.ttf") format("truetype");
+}
+
+html, body {
+    height: 100%;
+    width: 100%;
+    font-size: 100%;
+    line-height: 1;
+    font-size: 14px;
+    -ms-text-size-adjust: 100%;
+    -moz-text-size-adjust: 100%;
+    -webkit-text-size-adjust: 100%;
+    font-family: 'VinnytsiaReg', serif;
+    -moz-background-size: 100%; /* Firefox 3.6+ */
+    -webkit-background-size: 100%; /* Safari 3.1+ и Chrome 4.0+ */
+    -o-background-size: 100%; /* Opera 9.6+ */
+    background-size: 100%; /* Современные браузеры */
+}
+
+input, button, textarea {
+    font-family: inherit;
+}
+
+input::-ms-clear {
+    display: none;
+}
+
+button {
+    cursor: pointer;
+}
+
+button::-moz-focus-inner {
+    padding: 0;
+    border: 0;
+}
+
+a, a:visited {
+    text-decoration: none;
+    color: white;
+}
+
+a:hover {
+    text-decoration: none;
+}
+
+
+ul li {
+    list-style: none;
+}
+
+img {
+    vertical-align: top;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-size: inherit;
+    font-weight: inherit;
+}
+
+/*--------------------*/
+
+
+body {
+    background-color: #D8F8FF;
+    padding-top: 20px;
+    height: 100%;
+    min-height: 100vh;
+    margin: 0;
+
+}
+
+
+header {
+    width: 1184px;
+    height: 108px;
+    background-color: #ADB9E3;
+    color: white;
+    border-radius: 50px;
+    display: flex;                 /* Делаем header флексом */
+    justify-content: center;       /* Центрируем по горизонтали */
+    align-items: center;           /* Центрируем по вертикали */
+    margin: 0 auto;                /* Центрируем блок по центру страницы */
+
+
+}
+
+/* Контейнер хедера */
+.header-container {
+    display: flex;                 /* Делаем контейнер флексом */
+    justify-content: space-between; /* Равномерное распределение элементов */
+    align-items: center;            /* Центрируем элементы по вертикали */
+    padding: 30px 50px;             /* Внутренние отступы */
+    font-family: 'Inter';
+    font-weight: bold;
+    width: 100%;                    /* Растягиваем контейнер на весь header */
+}
+
+.header-title, .header-item-text {
+    font-size: 30px;
+}
+
+
+
+
+/* Иконка пользователя */
+.profile-container {
+    position: relative;
+    display: inline-block;
+}
+
+.header-item-profile {
+    height: 40px;
+    width: 40px;
+}
+
+/* Dropdown menu */
+.profile-menu {
+    position: absolute;
+    top: 10px; /* Поднимаю выше */
+    left: -150px; /* Двигаю левее */
+    right: 0;
+    background: #A379C9;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    border-radius: 20px;
+    display: none;
+    width: 157px;
+    height: 153px;
+}
+
+.profile-menu a {
+    display: block;
+    font-family: 'Inter';
+    padding: 10px;
+    text-decoration: none;
+    color: white;
+    text-align: center;  /* Выравнивание текста по центру */
+}
+
+.profile-menu a:hover {
+    background: #56C7B2;
+}

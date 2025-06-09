@@ -1,0 +1,210 @@
+.container {
+    width: 1184px;
+    height: 100%;
+    min-height: 100vh;
+    background-color: #ADB9E3;
+    border-radius: 50px 50px 0 0;
+    font-family: 'Inter';
+    text-align: center;
+    color: white;
+    margin-top: 33px;
+    padding-top: 1px;
+    box-sizing: border-box;
+}
+
+.title {
+    margin-top: 71px;
+    font-size: 40px;
+    font-weight: bold;
+}
+
+.child-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%;
+}
+
+.form {
+    font-size: 30px;
+    width: 570px;
+    font-weight: bold;
+    background-color: #A379C9;
+    height: 582px;
+    border-radius: 50px 50px 50px 50px;
+    margin: auto;
+    padding-top: 1px;
+    margin-top: 35px;
+    padding-bottom: 84px;
+}
+
+.login {
+    margin-top: 83px;
+    margin-left: 76px;
+    text-align: left;
+}
+
+.field-login {
+    width: 472px;
+    height: 67px;
+    background-color: #FFFFFF;
+    border-radius: 30px 30px;
+    margin: auto;
+}
+
+/* Центрирование текста в поле ввода */
+.field-login input,
+ .field-password input {
+    width: 100%; /* Делаем поле шириной на всю доступную ширину контейнера */
+    height: 100%; /* Делаем поле по высоте на всю высоту родителя */
+    font-weight: bold;
+    color: #56C7B2;
+    font-size: 30px; /* Размер шрифта для удобства */
+    border-radius: 30px; /* Округление углов */
+    text-align: center; /* Горизонтальное центрирование текста */
+    line-height: 67px; /* Вертикальное выравнивание текста, с учетом высоты поля */
+    padding-left: 15px; /* Отступ для текста от левого края */
+    padding-right: 15px; /* Отступ для текста от правого края */
+}
+
+.password {
+    margin-top: 61px;
+    margin-left: 76px;
+    text-align: left;
+}
+
+.field-password {
+    width: 472px;
+    height: 67px;
+    background-color: #FFFFFF;
+    border-radius: 30px 30px;
+    margin: auto;
+}
+
+/* Кнопка Создать */
+.field-create {
+    width: 472px;
+    height: 67px;
+    background-color: #56C7B2;
+    border-radius: 30px 30px;
+    margin-top: 61px;
+    margin-left: auto;
+    margin-right: auto;
+    display: flex; /* Добавляем flexbox для центрирования содержимого */
+    justify-content: center; /* Центрируем по горизонтали */
+    align-items: center; /* Центрируем по вертикали */
+}
+
+button {
+    background-color: transparent; /* Убираем фон */
+    border: none; /* Убираем границу */
+    color: white; /* Устанавливаем белый цвет текста */
+    font-size: 30px; /* Настройте размер шрифта по желанию */
+    font-weight: bold;
+    cursor: pointer; /* Указатель при наведении на кнопку */
+}
+
+/* Окно ошибок Popup */
+.popup-content {
+    background-color: #56C7B2;
+    padding: 30px;
+    border-radius: 10px;
+    width: 700px;
+    max-width: 90%; /* Уменьшаем максимальную ширину для мобильных устройств */
+    text-align: left;
+    position: relative;
+}
+
+.popup-content {
+    /* max-width: 900px; */
+    width: 100%;
+    text-align: center; /* Для выравнивания текста */
+}
+
+
+
+
+
+/* Ошибки в виде списка */
+#errorMessages {
+    list-style-type: disc; /* Маркеры в виде кругов */
+    padding-left: 20px;
+    color: #D8000C; /* Цвет текста ошибок */
+}
+
+/* Каждый элемент списка с ошибкой */
+#errorMessages p {
+    margin: 10px 0;
+    font-size: 16px;
+}
+
+.footer {
+    margin: 56px auto 0 auto;
+    background-color: #A379C9;
+    width: 570px;
+    height: 100%;
+
+    border-radius: 50px 50px 0 0;
+    display: flex; /* Добавляем flexbox для центрирования содержимого */
+    gap: 10px; /* Добавляем промежуток между элементами */
+}
+
+
+.go-back {
+    width: 472px;
+    height: 67px;
+    background-color: #56C7B2;
+    border-radius: 30px 30px;
+    margin-top: 32px;
+    margin-left: auto;
+    margin-right: auto;
+    display: flex; /* Добавляем flexbox для центрирования содержимого */
+    justify-content: center; /* Центрируем по горизонтали */
+    align-items: center; /* Центрируем по вертикали */
+}
+
+
+.popup {
+    position: fixed; /* всегда остается на одном месте на экране, даже при прокрутке страницы */
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%); /* Сдвигает элемент на 50% своей ширины и высоты обратно, чтобы центрировать его точно по середине экрана. */
+    background-color: white;
+    border: 1px solid #ccc;  /* Добавляет рамку вокруг окна шириной 1px и серым цветом (#ccc). */
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    padding: 10px;
+    z-index: 1000;  /* высокий уровень слоя для окна, чтобы оно отображалось поверх остальных элементов на странице. */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 900px; /* Задаем фиксированную ширину */
+    max-width: 90%; /* Для адаптивности */
+}
+
+
+
+.popup .close {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    cursor: pointer;
+    font-size: 18px;
+    color: #555;
+}
+
+.popup .close:hover {
+    color: #000;
+}
+
+.popup ul {
+    text-align: left;
+    padding-left: 20px;
+    margin: 10px 0;
+    list-style-type: disc; /* Добавляем маркеры */
+}
+
+.popup ul li {
+    color: #ff0000; /* Красный цвет для ошибок */
+    margin-bottom: 5px;
+}

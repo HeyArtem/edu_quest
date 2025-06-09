@@ -29,52 +29,56 @@
 
                 <!-- Карточка теста, с текстом и картинкой теста -->
                 <div class="card-result">
-                    <!--Текстовая часть карточки-->
-                    <div class="card-result-text">
-                        <div class="test-name">
-                            {{ result.title }}
-                        </div>
-                        <div class="amount-qestions">
-                            <div class="icon-amount-qestions">
-                                <img src="{% static 'img/amount_qestions.svg' %}" height="15"
-                                     alt="Иконка количество вопросов">
-                            </div>
-                            <div class="amount-qestions-text">
-                                {{ result.num_questions }} вопросов
-                            </div>
+                    <!-- Абсолютная ссылка на весь блок, кроме избранного -->
+                    <a href="{% url 'user_result' result.results_id %}" class="card-overlay-link"></a>
 
-                        </div>
-                        <div class="progress">
-                            <div class="icon-progress">
-                                <img src="{% static 'img/progress.svg' %}" height="13" alt="Иконка progress">
+
+                        <!--Текстовая часть карточки-->
+                        <div class="card-result-text">
+                            <div class="test-name">
+                                {{ result.title }}
                             </div>
-                            <div class="progress-text">
-                                {{ result.progress }}% прогресс
+                            <div class="amount-qestions">
+                                <div class="icon-amount-qestions">
+                                    <img src="{% static 'img/amount_qestions.svg' %}" height="15"
+                                         alt="Иконка количество вопросов">
+                                </div>
+                                <div class="amount-qestions-text">
+                                    {{ result.num_questions }} вопросов
+                                </div>
+
+                            </div>
+                            <div class="progress">
+                                <div class="icon-progress">
+                                    <img src="{% static 'img/progress.svg' %}" height="13" alt="Иконка progress">
+                                </div>
+                                <div class="progress-text">
+                                    {{ result.progress }}% прогресс
+                                </div>
+                            </div>
+                            <div class="favorite">
+                                <a href="javascript:void(0);"
+                                   class="favorite-btn"
+                                   data-test-id="{{ result.test_id }}"
+                                   data-is-favorite="{% if result.test_id in favorite_test_ids %}true{% else %}false{% endif %}">
+                                    <svg xmlns="http://www.w3.org/2000/svg"
+                                         viewBox="0 0 16 16"
+                                         fill="currentColor"
+                                         class="favorite-icon">
+                                        <path d="M2.866 14.85c-.078.444.36.791.746.593l3.39-1.888
+                                                         3.389 1.888c.386.198.824-.149.746-.592l-.647-3.73
+                                                         2.713-2.63c.329-.317.158-.888-.283-.95l-3.77-.546
+                                                         -1.685-3.408a.513.513 0 0 0-.927 0L5.354
+                                                         7.003l-3.77.546c-.441.062-.612.633-.282.95l2.713
+                                                         2.63-.647 3.73z"/>
+                                    </svg>
+                                </a>
                             </div>
                         </div>
-                        <div class="favorite">
-                            <a href="javascript:void(0);"
-                               class="favorite-btn"
-                               data-test-id="{{ result.test_id }}"
-                               data-is-favorite="{% if result.test_id in favorite_test_ids %}true{% else %}false{% endif %}">
-                                <svg xmlns="http://www.w3.org/2000/svg"
-                                     viewBox="0 0 16 16"
-                                     fill="currentColor"
-                                     class="favorite-icon">
-                                    <path d="M2.866 14.85c-.078.444.36.791.746.593l3.39-1.888
-                                                     3.389 1.888c.386.198.824-.149.746-.592l-.647-3.73
-                                                     2.713-2.63c.329-.317.158-.888-.283-.95l-3.77-.546
-                                                     -1.685-3.408a.513.513 0 0 0-.927 0L5.354
-                                                     7.003l-3.77.546c-.441.062-.612.633-.282.95l2.713
-                                                     2.63-.647 3.73z"/>
-                                </svg>
-                            </a>
+                        <!--Картинка карточки-->
+                        <div class="card-result-picture">
+                            <img src="{{ result.cover.url }}" alt="Картинка теста">
                         </div>
-                    </div>
-                    <!--Картинка карточки-->
-                    <div class="card-result-picture">
-                        <img src="{{ result.cover.url }}" alt="Картинка теста">
-                    </div>
                 </div>
 
                 {# Закрываем строку после двух карточек или если это последняя карточка #}
