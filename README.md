@@ -41,3 +41,5 @@ Category.objects.filter(title__icontains=self.request.query_params.get('search',
 
 написал (сделать дамп повторно, чем перезаписал действующий дамп мой БД)
 `pg_dump -U hey_art_eq -h localhost -d edu_quest > dump.sql`
+
+почему тебя нет на git?
