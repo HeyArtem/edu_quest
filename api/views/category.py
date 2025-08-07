@@ -4,7 +4,7 @@ from rest_framework.response import Response
 from rest_framework.views import APIView
 
 # from api.serializers.categories.create import CreateCategorySerializer
-from api.serializers.categories.list import ListCategorySerializer
+from api.serializers.categories.list import CategorySerializer
 from api.serializers.categories.retrieve import RetrieveCategorySerializer
 from models_app.models import Category
 
@@ -31,7 +31,7 @@ from models_app.models import Category
 #             categories = categories.filter(title__icontains=search)
 #
 #         return Response(
-#             ListCategorySerializer(categories, many=True).data,
+#             CategorySerializer(categories, many=True).data,
 #             status=status.HTTP_200_OK
 #         )
 #
@@ -61,7 +61,7 @@ class CategoryListCreateAPIView(ListCreateAPIView):
     """
 
     # queryset = Category.objects.all()
-    serializer_class = ListCategorySerializer
+    serializer_class = CategorySerializer
 
     def get_queryset(self):
         # categories = Category.objects.all()

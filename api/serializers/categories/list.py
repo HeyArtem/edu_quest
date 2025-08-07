@@ -3,7 +3,7 @@ from rest_framework import serializers
 from models_app.models import Category
 
 
-class ListCategorySerializer(serializers.ModelSerializer):
+class CategorySerializer(serializers.ModelSerializer):
     """
     Сериализатор.
     ModelSerializer-удобен, что сам определяет типы данных
